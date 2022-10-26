@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CEMSModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="bill_summary">
+          <Key>
+            <PropertyRef Name="MONTH" />
+            <PropertyRef Name="BLOCK_ID" />
+            <PropertyRef Name="CS_ID" />
+          </Key>
+          <Property Name="MONTH" Type="date" Nullable="false" />
+          <Property Name="BLOCK_ID" Type="uint" Nullable="false" />
+          <Property Name="CS_ID" Type="uint" Nullable="false" />
+          <Property Name="C_START" Type="double" />
+          <Property Name="C_END" Type="double" />
+          <Property Name="C_TOTAL" Type="float" />
+          <Property Name="C_ADL1_START" Type="datetime" Precision="0" />
+          <Property Name="C_ADL1_END" Type="datetime" Precision="0" />
+          <Property Name="C_ADL1_DURATION" Type="float" />
+          <Property Name="C_ADL1_START_VALUE" Type="float" />
+          <Property Name="C_ADL1_PEAK_VALUE" Type="float" />
+          <Property Name="C_ADL1_END_VALUE" Type="float" />
+          <Property Name="C_ADL2_START" Type="datetime" Precision="0" />
+          <Property Name="C_ADL2_END" Type="datetime" Precision="0" />
+          <Property Name="C_ADL2_DURATION" Type="float" />
+          <Property Name="C_ADL2_START_VALUE" Type="float" />
+          <Property Name="C_ADL2_PEAK_VALUE" Type="float" />
+          <Property Name="C_ADL2_END_VALUE" Type="float" />
+          <Property Name="C_SPIKE1_VALUE" Type="float" />
+          <Property Name="C_SPIKE1_TIME" Type="datetime" Precision="0" />
+          <Property Name="C_SPIKE2_VALUE" Type="float" />
+          <Property Name="C_SPIKE2_TIME" Type="datetime" Precision="0" />
+          <Property Name="H_START" Type="double" />
+          <Property Name="H_END" Type="double" />
+          <Property Name="H_TOTAL" Type="float" />
+          <Property Name="H_ADL1_START" Type="datetime" Precision="0" />
+          <Property Name="H_ADL1_END" Type="datetime" Precision="0" />
+          <Property Name="H_ADL1_DURATION" Type="float" />
+          <Property Name="H_ADL1_START_VALUE" Type="float" />
+          <Property Name="H_ADL1_PEAK_VALUE" Type="float" />
+          <Property Name="H_ADL1_END_VALUE" Type="float" />
+          <Property Name="H_ADL2_START" Type="datetime" Precision="0" />
+          <Property Name="H_ADL2_END" Type="datetime" Precision="0" />
+          <Property Name="H_ADL2_DURATION" Type="float" />
+          <Property Name="H_ADL2_START_VALUE" Type="float" />
+          <Property Name="H_ADL2_PEAK_VALUE" Type="float" />
+          <Property Name="H_ADL2_END_VALUE" Type="float" />
+          <Property Name="H_SPIKE1_VALUE" Type="float" />
+          <Property Name="H_SPIKE1_TIME" Type="datetime" Precision="0" />
+          <Property Name="H_SPIKE2_VALUE" Type="float" />
+          <Property Name="H_SPIKE2_TIME" Type="datetime" Precision="0" />
+          <Property Name="TIME_CALC" Type="datetime" Precision="0" />
+          <Property Name="C_DDL" Type="float" />
+          <Property Name="H_DDL" Type="float" />
+          <Property Name="C_DIL" Type="float" />
+          <Property Name="H_DIL" Type="float" />
+        </EntityType>
+        <EntityType Name="daily_summary_cooling">
+          <Key>
+            <PropertyRef Name="DATE" />
+            <PropertyRef Name="BLK_ID" />
+            <PropertyRef Name="CS_ID" />
+          </Key>
+          <Property Name="DATE" Type="date" Nullable="false" />
+          <Property Name="BLK_ID" Type="uint" Nullable="false" />
+          <Property Name="CS_ID" Type="uint" Nullable="false" />
+          <Property Name="START_RTH" Type="double" />
+          <Property Name="END_RTH" Type="double" />
+          <Property Name="TOTAL_RTH" Type="float" />
+          <Property Name="SPIKE_TIME_1" Type="datetime" Precision="0" />
+          <Property Name="SPIKE_1" Type="float" />
+          <Property Name="SPIKE_TIME_2" Type="datetime" Precision="0" />
+          <Property Name="SPIKE_2" Type="float" />
+          <Property Name="ADL_START_1" Type="datetime" Precision="0" />
+          <Property Name="ADL_END_1" Type="datetime" Precision="0" />
+          <Property Name="ADL_DURATION_1" Type="float" />
+          <Property Name="ADL_START_VALUE_1" Type="float" />
+          <Property Name="ADL_PEAK_VALUE_1" Type="float" />
+          <Property Name="ADL_END_VALUE_1" Type="float" />
+          <Property Name="ADL_START_2" Type="datetime" Precision="0" />
+          <Property Name="ADL_END_2" Type="datetime" Precision="0" />
+          <Property Name="ADL_DURATION_2" Type="float" />
+          <Property Name="ADL_START_VALUE_2" Type="float" />
+          <Property Name="ADL_PEAK_VALUE_2" Type="float" />
+          <Property Name="ADL_END_VALUE_2" Type="float" />
+          <Property Name="DDL" Type="float" />
+          <Property Name="DIL" Type="float" />
+        </EntityType>
+        <EntityContainer Name="CEMSModelStoreContainer">
+          <EntitySet Name="bill_summary" EntityType="Self.bill_summary" Schema="changibilling" store:Type="Tables" />
+          <EntitySet Name="daily_summary_cooling" EntityType="Self.daily_summary_cooling" Schema="changibilling" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CEMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="bill_summary">
+          <Key>
+            <PropertyRef Name="MONTH" />
+            <PropertyRef Name="BLOCK_ID" />
+            <PropertyRef Name="CS_ID" />
+          </Key>
+          <Property Name="MONTH" Type="DateTime" Nullable="false" />
+          <Property Name="BLOCK_ID" Type="Int64" Nullable="false" />
+          <Property Name="CS_ID" Type="Int64" Nullable="false" />
+          <Property Name="C_START" Type="Double" />
+          <Property Name="C_END" Type="Double" />
+          <Property Name="C_TOTAL" Type="Single" />
+          <Property Name="C_ADL1_START" Type="DateTime" />
+          <Property Name="C_ADL1_END" Type="DateTime" />
+          <Property Name="C_ADL1_DURATION" Type="Single" />
+          <Property Name="C_ADL1_START_VALUE" Type="Single" />
+          <Property Name="C_ADL1_PEAK_VALUE" Type="Single" />
+          <Property Name="C_ADL1_END_VALUE" Type="Single" />
+          <Property Name="C_ADL2_START" Type="DateTime" />
+          <Property Name="C_ADL2_END" Type="DateTime" />
+          <Property Name="C_ADL2_DURATION" Type="Single" />
+          <Property Name="C_ADL2_START_VALUE" Type="Single" />
+          <Property Name="C_ADL2_PEAK_VALUE" Type="Single" />
+          <Property Name="C_ADL2_END_VALUE" Type="Single" />
+          <Property Name="C_SPIKE1_VALUE" Type="Single" />
+          <Property Name="C_SPIKE1_TIME" Type="DateTime" />
+          <Property Name="C_SPIKE2_VALUE" Type="Single" />
+          <Property Name="C_SPIKE2_TIME" Type="DateTime" />
+          <Property Name="H_START" Type="Double" />
+          <Property Name="H_END" Type="Double" />
+          <Property Name="H_TOTAL" Type="Single" />
+          <Property Name="H_ADL1_START" Type="DateTime" />
+          <Property Name="H_ADL1_END" Type="DateTime" />
+          <Property Name="H_ADL1_DURATION" Type="Single" />
+          <Property Name="H_ADL1_START_VALUE" Type="Single" />
+          <Property Name="H_ADL1_PEAK_VALUE" Type="Single" />
+          <Property Name="H_ADL1_END_VALUE" Type="Single" />
+          <Property Name="H_ADL2_START" Type="DateTime" />
+          <Property Name="H_ADL2_END" Type="DateTime" />
+          <Property Name="H_ADL2_DURATION" Type="Single" />
+          <Property Name="H_ADL2_START_VALUE" Type="Single" />
+          <Property Name="H_ADL2_PEAK_VALUE" Type="Single" />
+          <Property Name="H_ADL2_END_VALUE" Type="Single" />
+          <Property Name="H_SPIKE1_VALUE" Type="Single" />
+          <Property Name="H_SPIKE1_TIME" Type="DateTime" />
+          <Property Name="H_SPIKE2_VALUE" Type="Single" />
+          <Property Name="H_SPIKE2_TIME" Type="DateTime" />
+          <Property Name="TIME_CALC" Type="DateTime" />
+          <Property Name="C_DDL" Type="Single" />
+          <Property Name="H_DDL" Type="Single" />
+          <Property Name="C_DIL" Type="Single" />
+          <Property Name="H_DIL" Type="Single" />
+        </EntityType>
+        <EntityType Name="daily_summary_cooling">
+          <Key>
+            <PropertyRef Name="DATE" />
+            <PropertyRef Name="BLK_ID" />
+            <PropertyRef Name="CS_ID" />
+          </Key>
+          <Property Name="DATE" Type="DateTime" Nullable="false" />
+          <Property Name="BLK_ID" Type="Int64" Nullable="false" />
+          <Property Name="CS_ID" Type="Int64" Nullable="false" />
+          <Property Name="START_RTH" Type="Double" />
+          <Property Name="END_RTH" Type="Double" />
+          <Property Name="TOTAL_RTH" Type="Single" />
+          <Property Name="SPIKE_TIME_1" Type="DateTime" />
+          <Property Name="SPIKE_1" Type="Single" />
+          <Property Name="SPIKE_TIME_2" Type="DateTime" />
+          <Property Name="SPIKE_2" Type="Single" />
+          <Property Name="ADL_START_1" Type="DateTime" />
+          <Property Name="ADL_END_1" Type="DateTime" />
+          <Property Name="ADL_DURATION_1" Type="Single" />
+          <Property Name="ADL_START_VALUE_1" Type="Single" />
+          <Property Name="ADL_PEAK_VALUE_1" Type="Single" />
+          <Property Name="ADL_END_VALUE_1" Type="Single" />
+          <Property Name="ADL_START_2" Type="DateTime" />
+          <Property Name="ADL_END_2" Type="DateTime" />
+          <Property Name="ADL_DURATION_2" Type="Single" />
+          <Property Name="ADL_START_VALUE_2" Type="Single" />
+          <Property Name="ADL_PEAK_VALUE_2" Type="Single" />
+          <Property Name="ADL_END_VALUE_2" Type="Single" />
+          <Property Name="DDL" Type="Single" />
+          <Property Name="DIL" Type="Single" />
+        </EntityType>
+        <EntityContainer Name="CEMS" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="bill_summary" EntityType="Self.bill_summary" />
+          <EntitySet Name="daily_summary_cooling" EntityType="Self.daily_summary_cooling" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CEMSModelStoreContainer" CdmEntityContainer="CEMS">
+          <EntitySetMapping Name="bill_summary">
+            <EntityTypeMapping TypeName="CEMSModel.bill_summary">
+              <MappingFragment StoreEntitySet="bill_summary">
+                <ScalarProperty Name="MONTH" ColumnName="MONTH" />
+                <ScalarProperty Name="BLOCK_ID" ColumnName="BLOCK_ID" />
+                <ScalarProperty Name="CS_ID" ColumnName="CS_ID" />
+                <ScalarProperty Name="C_START" ColumnName="C_START" />
+                <ScalarProperty Name="C_END" ColumnName="C_END" />
+                <ScalarProperty Name="C_TOTAL" ColumnName="C_TOTAL" />
+                <ScalarProperty Name="C_ADL1_START" ColumnName="C_ADL1_START" />
+                <ScalarProperty Name="C_ADL1_END" ColumnName="C_ADL1_END" />
+                <ScalarProperty Name="C_ADL1_DURATION" ColumnName="C_ADL1_DURATION" />
+                <ScalarProperty Name="C_ADL1_START_VALUE" ColumnName="C_ADL1_START_VALUE" />
+                <ScalarProperty Name="C_ADL1_PEAK_VALUE" ColumnName="C_ADL1_PEAK_VALUE" />
+                <ScalarProperty Name="C_ADL1_END_VALUE" ColumnName="C_ADL1_END_VALUE" />
+                <ScalarProperty Name="C_ADL2_START" ColumnName="C_ADL2_START" />
+                <ScalarProperty Name="C_ADL2_END" ColumnName="C_ADL2_END" />
+                <ScalarProperty Name="C_ADL2_DURATION" ColumnName="C_ADL2_DURATION" />
+                <ScalarProperty Name="C_ADL2_START_VALUE" ColumnName="C_ADL2_START_VALUE" />
+                <ScalarProperty Name="C_ADL2_PEAK_VALUE" ColumnName="C_ADL2_PEAK_VALUE" />
+                <ScalarProperty Name="C_ADL2_END_VALUE" ColumnName="C_ADL2_END_VALUE" />
+                <ScalarProperty Name="C_SPIKE1_VALUE" ColumnName="C_SPIKE1_VALUE" />
+                <ScalarProperty Name="C_SPIKE1_TIME" ColumnName="C_SPIKE1_TIME" />
+                <ScalarProperty Name="C_SPIKE2_VALUE" ColumnName="C_SPIKE2_VALUE" />
+                <ScalarProperty Name="C_SPIKE2_TIME" ColumnName="C_SPIKE2_TIME" />
+                <ScalarProperty Name="H_START" ColumnName="H_START" />
+                <ScalarProperty Name="H_END" ColumnName="H_END" />
+                <ScalarProperty Name="H_TOTAL" ColumnName="H_TOTAL" />
+                <ScalarProperty Name="H_ADL1_START" ColumnName="H_ADL1_START" />
+                <ScalarProperty Name="H_ADL1_END" ColumnName="H_ADL1_END" />
+                <ScalarProperty Name="H_ADL1_DURATION" ColumnName="H_ADL1_DURATION" />
+                <ScalarProperty Name="H_ADL1_START_VALUE" ColumnName="H_ADL1_START_VALUE" />
+                <ScalarProperty Name="H_ADL1_PEAK_VALUE" ColumnName="H_ADL1_PEAK_VALUE" />
+                <ScalarProperty Name="H_ADL1_END_VALUE" ColumnName="H_ADL1_END_VALUE" />
+                <ScalarProperty Name="H_ADL2_START" ColumnName="H_ADL2_START" />
+                <ScalarProperty Name="H_ADL2_END" ColumnName="H_ADL2_END" />
+                <ScalarProperty Name="H_ADL2_DURATION" ColumnName="H_ADL2_DURATION" />
+                <ScalarProperty Name="H_ADL2_START_VALUE" ColumnName="H_ADL2_START_VALUE" />
+                <ScalarProperty Name="H_ADL2_PEAK_VALUE" ColumnName="H_ADL2_PEAK_VALUE" />
+                <ScalarProperty Name="H_ADL2_END_VALUE" ColumnName="H_ADL2_END_VALUE" />
+                <ScalarProperty Name="H_SPIKE1_VALUE" ColumnName="H_SPIKE1_VALUE" />
+                <ScalarProperty Name="H_SPIKE1_TIME" ColumnName="H_SPIKE1_TIME" />
+                <ScalarProperty Name="H_SPIKE2_VALUE" ColumnName="H_SPIKE2_VALUE" />
+                <ScalarProperty Name="H_SPIKE2_TIME" ColumnName="H_SPIKE2_TIME" />
+                <ScalarProperty Name="TIME_CALC" ColumnName="TIME_CALC" />
+                <ScalarProperty Name="C_DDL" ColumnName="C_DDL" />
+                <ScalarProperty Name="H_DDL" ColumnName="H_DDL" />
+                <ScalarProperty Name="C_DIL" ColumnName="C_DIL" />
+                <ScalarProperty Name="H_DIL" ColumnName="H_DIL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="daily_summary_cooling">
+            <EntityTypeMapping TypeName="CEMSModel.daily_summary_cooling">
+              <MappingFragment StoreEntitySet="daily_summary_cooling">
+                <ScalarProperty Name="DATE" ColumnName="DATE" />
+                <ScalarProperty Name="BLK_ID" ColumnName="BLK_ID" />
+                <ScalarProperty Name="CS_ID" ColumnName="CS_ID" />
+                <ScalarProperty Name="START_RTH" ColumnName="START_RTH" />
+                <ScalarProperty Name="END_RTH" ColumnName="END_RTH" />
+                <ScalarProperty Name="TOTAL_RTH" ColumnName="TOTAL_RTH" />
+                <ScalarProperty Name="SPIKE_TIME_1" ColumnName="SPIKE_TIME_1" />
+                <ScalarProperty Name="SPIKE_1" ColumnName="SPIKE_1" />
+                <ScalarProperty Name="SPIKE_TIME_2" ColumnName="SPIKE_TIME_2" />
+                <ScalarProperty Name="SPIKE_2" ColumnName="SPIKE_2" />
+                <ScalarProperty Name="ADL_START_1" ColumnName="ADL_START_1" />
+                <ScalarProperty Name="ADL_END_1" ColumnName="ADL_END_1" />
+                <ScalarProperty Name="ADL_DURATION_1" ColumnName="ADL_DURATION_1" />
+                <ScalarProperty Name="ADL_START_VALUE_1" ColumnName="ADL_START_VALUE_1" />
+                <ScalarProperty Name="ADL_PEAK_VALUE_1" ColumnName="ADL_PEAK_VALUE_1" />
+                <ScalarProperty Name="ADL_END_VALUE_1" ColumnName="ADL_END_VALUE_1" />
+                <ScalarProperty Name="ADL_START_2" ColumnName="ADL_START_2" />
+                <ScalarProperty Name="ADL_END_2" ColumnName="ADL_END_2" />
+                <ScalarProperty Name="ADL_DURATION_2" ColumnName="ADL_DURATION_2" />
+                <ScalarProperty Name="ADL_START_VALUE_2" ColumnName="ADL_START_VALUE_2" />
+                <ScalarProperty Name="ADL_PEAK_VALUE_2" ColumnName="ADL_PEAK_VALUE_2" />
+                <ScalarProperty Name="ADL_END_VALUE_2" ColumnName="ADL_END_VALUE_2" />
+                <ScalarProperty Name="DDL" ColumnName="DDL" />
+                <ScalarProperty Name="DIL" ColumnName="DIL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,912 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="UMS.Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccessLog">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ServerDateTime" Type="datetime" Nullable="false" />
+          <Property Name="HostName" Type="varchar" MaxLength="50" />
+          <Property Name="ServerIP" Type="varchar" MaxLength="50" />
+          <Property Name="ClientIP" Type="varchar" MaxLength="50" />
+          <Property Name="MacAddress" Type="varchar" MaxLength="50" />
+          <Property Name="EventType" Type="int" Nullable="false" />
+          <Property Name="EventDesc" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="EventStatus" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FailureReason" Type="varchar" MaxLength="100" />
+          <Property Name="LogoutType" Type="varchar" MaxLength="50" />
+          <Property Name="SessionId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ActivityLog">
+          <Key>
+            <PropertyRef Name="ActivityLogId" />
+          </Key>
+          <Property Name="ActivityLogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Month" Type="int" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="InsertedUserId" Type="int" Nullable="false" />
+          <Property Name="InsertedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedUserId" Type="int" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ActivityLogStatus">
+          <Key>
+            <PropertyRef Name="ActivityLogStatusId" />
+          </Key>
+          <Property Name="ActivityLogStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActivityLogId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="InsertedUserId" Type="int" Nullable="false" />
+          <Property Name="InsertedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AuditLog">
+          <Key>
+            <PropertyRef Name="auditLogId" />
+          </Key>
+          <Property Name="auditLogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="userFullName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="activity" Type="varchar(max)" />
+          <Property Name="dateTime" Type="datetime" Nullable="false" />
+          <Property Name="LogType" Type="int" Nullable="false" />
+          <Property Name="Summary" Type="varchar(max)" />
+          <Property Name="ActionName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Controller" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SessionId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailHistory">
+          <Key>
+            <PropertyRef Name="emailHistoryId" />
+          </Key>
+          <Property Name="emailHistoryId" Type="int" Nullable="false" />
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="emailTemplateId" Type="int" Nullable="false" />
+          <Property Name="emailContent" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="emailSentDatetime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailTemplate">
+          <Key>
+            <PropertyRef Name="emailTemplateId" />
+          </Key>
+          <Property Name="emailTemplateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="templateTextId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="templateHeader" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="templateBody" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="templateFooter" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Feature">
+          <Key>
+            <PropertyRef Name="featureId" />
+          </Key>
+          <Property Name="featureId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="featureTextId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="featureDescription" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="featureAction" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="featureController" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="mainMenuId" Type="int" />
+          <Property Name="subMenuId" Type="int" />
+        </EntityType>
+        <EntityType Name="MainMenu">
+          <Key>
+            <PropertyRef Name="mainMenuId" />
+          </Key>
+          <Property Name="mainMenuId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mainMenuTextId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="mainMenuDescription" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="mainMenuOrder" Type="int" Nullable="false" />
+          <Property Name="mainMenuIcon" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MSSQLAccessLog">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LogDateTime" Type="datetime" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="ClientIP" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LogStatus" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MSSQLLogHistory">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LogDate" Type="datetime" Nullable="false" />
+          <Property Name="ProcessInfo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Text" Type="varchar" MaxLength="5000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Profile">
+          <Key>
+            <PropertyRef Name="profileId" />
+          </Key>
+          <Property Name="profileId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="profileTextId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="profileDescription" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="profileStatus" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="updatedDatetime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProfileFeature">
+          <Key>
+            <PropertyRef Name="profileFeatureId" />
+          </Key>
+          <Property Name="profileFeatureId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="profileId" Type="int" Nullable="false" />
+          <Property Name="featureId" Type="int" Nullable="false" />
+          <Property Name="profileFeatureStatus" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PWControlSettings">
+          <Key>
+            <PropertyRef Name="CtrlSettingId" />
+          </Key>
+          <Property Name="CtrlSettingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TextId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Value" Type="int" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="InsertedUserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PWHistory">
+          <Key>
+            <PropertyRef Name="HistoryId" />
+          </Key>
+          <Property Name="HistoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChangedDatetime" Type="datetime" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Salt" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubMenu">
+          <Key>
+            <PropertyRef Name="subMenuId" />
+          </Key>
+          <Property Name="subMenuId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="subMenuTextId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="subMenuDescription" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="subMenuOrder" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="subMenuIcon" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="mainMenuId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="firstName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="lastName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="salt" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="userEmail" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="userPhone" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="userStatus" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="userImage" Type="varbinary(max)" />
+          <Property Name="insertUserId" Type="int" Nullable="false" />
+          <Property Name="updatedDatetime" Type="datetime" Nullable="false" />
+          <Property Name="insertedDatetime" Type="datetime" Nullable="false" />
+          <Property Name="pwExpireDatetime" Type="datetime" Nullable="false" />
+          <Property Name="profileId" Type="int" Nullable="false" />
+          <Property Name="DashConfig" Type="varchar" MaxLength="255" />
+          <Property Name="pwLockoutDatetime" Type="datetime" />
+          <Property Name="accountStatus" Type="int" Nullable="false" />
+          <Property Name="loginAttempts" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserActivityLog">
+          <Key>
+            <PropertyRef Name="userActivityLogId" />
+          </Key>
+          <Property Name="userActivityLogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="module" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="action" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="remark" Type="varchar" MaxLength="255" />
+          <Property Name="insertedDatetime" Type="datetime" Nullable="false" />
+          <Property Name="userId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'KIBS_UMS.dbo.VwFeatures' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VwFeatures">
+          <Key>
+            <PropertyRef Name="profileFeatureId" />
+            <PropertyRef Name="featureTextId" />
+            <PropertyRef Name="featureAction" />
+            <PropertyRef Name="featureController" />
+            <PropertyRef Name="featureDescription" />
+            <PropertyRef Name="profileId" />
+            <PropertyRef Name="profileDescription" />
+            <PropertyRef Name="featureId" />
+            <PropertyRef Name="profileFeatureStatus" />
+          </Key>
+          <Property Name="profileFeatureId" Type="int" Nullable="false" />
+          <Property Name="featureTextId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="featureAction" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="featureController" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="featureDescription" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="mainMenuId" Type="int" />
+          <Property Name="subMenuId" Type="int" />
+          <Property Name="profileId" Type="int" Nullable="false" />
+          <Property Name="profileDescription" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="featureId" Type="int" Nullable="false" />
+          <Property Name="profileFeatureStatus" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'KIBS_UMS.dbo.VwUser' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VwUser">
+          <Key>
+            <PropertyRef Name="userId" />
+            <PropertyRef Name="userName" />
+            <PropertyRef Name="firstName" />
+            <PropertyRef Name="lastName" />
+            <PropertyRef Name="password" />
+            <PropertyRef Name="salt" />
+            <PropertyRef Name="userEmail" />
+            <PropertyRef Name="userPhone" />
+            <PropertyRef Name="userStatus" />
+            <PropertyRef Name="insertUserId" />
+            <PropertyRef Name="updatedDatetime" />
+            <PropertyRef Name="insertedDatetime" />
+            <PropertyRef Name="pwExpireDatetime" />
+            <PropertyRef Name="profileId" />
+            <PropertyRef Name="profileDescription" />
+            <PropertyRef Name="accountStatus" />
+          </Key>
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="userName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="firstName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="lastName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="salt" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="userEmail" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="userPhone" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="userStatus" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="userImage" Type="varbinary(max)" />
+          <Property Name="insertUserId" Type="int" Nullable="false" />
+          <Property Name="updatedDatetime" Type="datetime" Nullable="false" />
+          <Property Name="insertedDatetime" Type="datetime" Nullable="false" />
+          <Property Name="pwExpireDatetime" Type="datetime" Nullable="false" />
+          <Property Name="profileId" Type="int" Nullable="false" />
+          <Property Name="profileDescription" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="accountStatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="UMSModelStoreContainer">
+          <EntitySet Name="AccessLog" EntityType="Self.AccessLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActivityLog" EntityType="Self.ActivityLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActivityLogStatus" EntityType="Self.ActivityLogStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AuditLog" EntityType="Self.AuditLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailHistory" EntityType="Self.EmailHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailTemplate" EntityType="Self.EmailTemplate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feature" EntityType="Self.Feature" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MainMenu" EntityType="Self.MainMenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MSSQLAccessLog" EntityType="Self.MSSQLAccessLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MSSQLLogHistory" EntityType="Self.MSSQLLogHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Profile" EntityType="Self.Profile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProfileFeature" EntityType="Self.ProfileFeature" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PWControlSettings" EntityType="Self.PWControlSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PWHistory" EntityType="Self.PWHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubMenu" EntityType="Self.SubMenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserActivityLog" EntityType="Self.UserActivityLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VwFeatures" EntityType="Self.VwFeatures" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VwFeatures].[profileFeatureId] AS [profileFeatureId], 
+    [VwFeatures].[featureTextId] AS [featureTextId], 
+    [VwFeatures].[featureAction] AS [featureAction], 
+    [VwFeatures].[featureController] AS [featureController], 
+    [VwFeatures].[featureDescription] AS [featureDescription], 
+    [VwFeatures].[mainMenuId] AS [mainMenuId], 
+    [VwFeatures].[subMenuId] AS [subMenuId], 
+    [VwFeatures].[profileId] AS [profileId], 
+    [VwFeatures].[profileDescription] AS [profileDescription], 
+    [VwFeatures].[featureId] AS [featureId], 
+    [VwFeatures].[profileFeatureStatus] AS [profileFeatureStatus]
+    FROM [dbo].[VwFeatures] AS [VwFeatures]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VwUser" EntityType="Self.VwUser" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VwUser].[userId] AS [userId], 
+    [VwUser].[userName] AS [userName], 
+    [VwUser].[firstName] AS [firstName], 
+    [VwUser].[lastName] AS [lastName], 
+    [VwUser].[password] AS [password], 
+    [VwUser].[salt] AS [salt], 
+    [VwUser].[userEmail] AS [userEmail], 
+    [VwUser].[userPhone] AS [userPhone], 
+    [VwUser].[userStatus] AS [userStatus], 
+    [VwUser].[userImage] AS [userImage], 
+    [VwUser].[insertUserId] AS [insertUserId], 
+    [VwUser].[updatedDatetime] AS [updatedDatetime], 
+    [VwUser].[insertedDatetime] AS [insertedDatetime], 
+    [VwUser].[pwExpireDatetime] AS [pwExpireDatetime], 
+    [VwUser].[profileId] AS [profileId], 
+    [VwUser].[profileDescription] AS [profileDescription], 
+    [VwUser].[accountStatus] AS [accountStatus]
+    FROM [dbo].[VwUser] AS [VwUser]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UMS.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="EmailHistory">
+          <Key>
+            <PropertyRef Name="emailHistoryId" />
+          </Key>
+          <Property Name="emailHistoryId" Type="Int32" Nullable="false" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="emailTemplateId" Type="Int32" Nullable="false" />
+          <Property Name="emailContent" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="emailSentDatetime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="EmailTemplate">
+          <Key>
+            <PropertyRef Name="emailTemplateId" />
+          </Key>
+          <Property Name="emailTemplateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="templateTextId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="templateHeader" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="templateBody" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="templateFooter" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Feature">
+          <Key>
+            <PropertyRef Name="featureId" />
+          </Key>
+          <Property Name="featureId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="featureTextId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="featureDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="featureAction" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="featureController" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mainMenuId" Type="Int32" />
+          <Property Name="subMenuId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="MainMenu">
+          <Key>
+            <PropertyRef Name="mainMenuId" />
+          </Key>
+          <Property Name="mainMenuId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mainMenuTextId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mainMenuDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mainMenuOrder" Type="Int32" Nullable="false" />
+          <Property Name="mainMenuIcon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Profile">
+          <Key>
+            <PropertyRef Name="profileId" />
+          </Key>
+          <Property Name="profileId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="profileTextId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="profileDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="profileStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="updatedDatetime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ProfileFeature">
+          <Key>
+            <PropertyRef Name="profileFeatureId" />
+          </Key>
+          <Property Name="profileFeatureId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="profileId" Type="Int32" Nullable="false" />
+          <Property Name="featureId" Type="Int32" Nullable="false" />
+          <Property Name="profileFeatureStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubMenu">
+          <Key>
+            <PropertyRef Name="subMenuId" />
+          </Key>
+          <Property Name="subMenuId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="subMenuTextId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="subMenuDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="subMenuOrder" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="subMenuIcon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mainMenuId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserActivityLog">
+          <Key>
+            <PropertyRef Name="userActivityLogId" />
+          </Key>
+          <Property Name="userActivityLogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="module" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="action" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="remark" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="insertedDatetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VwFeature">
+          <Key>
+            <PropertyRef Name="profileFeatureId" />
+            <PropertyRef Name="featureAction" />
+            <PropertyRef Name="featureController" />
+            <PropertyRef Name="featureDescription" />
+            <PropertyRef Name="profileId" />
+            <PropertyRef Name="profileDescription" />
+            <PropertyRef Name="featureId" />
+            <PropertyRef Name="profileFeatureStatus" />
+            <PropertyRef Name="featureTextId" />
+          </Key>
+          <Property Name="profileFeatureId" Type="Int32" Nullable="false" />
+          <Property Name="featureAction" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="featureController" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="featureDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mainMenuId" Type="Int32" />
+          <Property Name="subMenuId" Type="Int32" />
+          <Property Name="profileId" Type="Int32" Nullable="false" />
+          <Property Name="profileDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="featureId" Type="Int32" Nullable="false" />
+          <Property Name="profileFeatureStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="featureTextId" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="UMSDB" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EmailHistories" EntityType="Self.EmailHistory" />
+          <EntitySet Name="EmailTemplates" EntityType="Self.EmailTemplate" />
+          <EntitySet Name="Features" EntityType="Self.Feature" />
+          <EntitySet Name="MainMenus" EntityType="Self.MainMenu" />
+          <EntitySet Name="Profiles" EntityType="Self.Profile" />
+          <EntitySet Name="ProfileFeatures" EntityType="Self.ProfileFeature" />
+          <EntitySet Name="SubMenus" EntityType="Self.SubMenu" />
+          <EntitySet Name="UserActivityLogs" EntityType="Self.UserActivityLog" />
+          <EntitySet Name="VwFeatures" EntityType="Self.VwFeature" />
+          <EntitySet Name="PWHistories" EntityType="UMS.Model.PWHistory" />
+          <EntitySet Name="Users" EntityType="UMS.Model.User" />
+          <EntitySet Name="PWControlSettings" EntityType="UMS.Model.PWControlSetting" />
+          <EntitySet Name="ActivityLogs" EntityType="UMS.Model.ActivityLog" />
+          <EntitySet Name="ActivityLogStatus" EntityType="UMS.Model.ActivityLogStatu" />
+          <EntitySet Name="VwUsers" EntityType="UMS.Model.VwUser" />
+          <EntitySet Name="AccessLogs" EntityType="UMS.Model.AccessLog" />
+          <EntitySet Name="AuditLogs" EntityType="UMS.Model.AuditLog" />
+          <EntitySet Name="MSSQLAccessLogs" EntityType="UMS.Model.MSSQLAccessLog" />
+          <EntitySet Name="MSSQLLogHistories" EntityType="UMS.Model.MSSQLLogHistory" />
+        </EntityContainer>
+        <EntityType Name="PWHistory">
+          <Key>
+            <PropertyRef Name="HistoryId" />
+          </Key>
+          <Property Name="HistoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChangedDatetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Salt" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="firstName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="lastName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="salt" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="userEmail" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="userPhone" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="userStatus" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="userImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="insertUserId" Type="Int32" Nullable="false" />
+          <Property Name="updatedDatetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="insertedDatetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="pwExpireDatetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="profileId" Type="Int32" Nullable="false" />
+          <Property Name="DashConfig" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="pwLockoutDatetime" Type="DateTime" Precision="3" />
+          <Property Name="accountStatus" Type="Int32" Nullable="false" />
+          <Property Name="loginAttempts" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PWControlSetting">
+          <Key>
+            <PropertyRef Name="CtrlSettingId" />
+          </Key>
+          <Property Name="CtrlSettingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TextId" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="InsertedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="InsertedUserId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ActivityLog">
+          <Key>
+            <PropertyRef Name="ActivityLogId" />
+          </Key>
+          <Property Name="ActivityLogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Month" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InsertedUserId" Type="Int32" Nullable="false" />
+          <Property Name="InsertedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedUserId" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ActivityLogStatu">
+          <Key>
+            <PropertyRef Name="ActivityLogStatusId" />
+          </Key>
+          <Property Name="ActivityLogStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActivityLogId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InsertedUserId" Type="Int32" Nullable="false" />
+          <Property Name="InsertedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="VwUser">
+          <Key>
+            <PropertyRef Name="userId" />
+            <PropertyRef Name="userName" />
+            <PropertyRef Name="firstName" />
+            <PropertyRef Name="lastName" />
+            <PropertyRef Name="password" />
+            <PropertyRef Name="salt" />
+            <PropertyRef Name="userEmail" />
+            <PropertyRef Name="userPhone" />
+            <PropertyRef Name="userStatus" />
+            <PropertyRef Name="insertUserId" />
+            <PropertyRef Name="updatedDatetime" />
+            <PropertyRef Name="insertedDatetime" />
+            <PropertyRef Name="pwExpireDatetime" />
+            <PropertyRef Name="profileId" />
+            <PropertyRef Name="profileDescription" />
+            <PropertyRef Name="accountStatus" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="userName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="firstName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="lastName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="salt" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="userEmail" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="userPhone" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="userStatus" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="userImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="insertUserId" Type="Int32" Nullable="false" />
+          <Property Name="updatedDatetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="insertedDatetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="pwExpireDatetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="profileId" Type="Int32" Nullable="false" />
+          <Property Name="profileDescription" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="accountStatus" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MSSQLAccessLog">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LogDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ClientIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LogStatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MSSQLLogHistory">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LogDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ProcessInfo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="5000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AccessLog">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ServerDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HostName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ServerIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ClientIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MacAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EventType" Type="Int32" Nullable="false" />
+          <Property Name="EventDesc" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EventStatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FailureReason" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LogoutType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SessionId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AuditLog">
+          <Key>
+            <PropertyRef Name="auditLogId" />
+          </Key>
+          <Property Name="auditLogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="userFullName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="activity" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="dateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LogType" Type="Int32" Nullable="false" />
+          <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ActionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Controller" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SessionId" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UMSModelStoreContainer" CdmEntityContainer="UMSDB">
+          <EntitySetMapping Name="EmailHistories">
+            <EntityTypeMapping TypeName="UMS.Model.EmailHistory">
+              <MappingFragment StoreEntitySet="EmailHistory">
+                <ScalarProperty Name="emailHistoryId" ColumnName="emailHistoryId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="emailTemplateId" ColumnName="emailTemplateId" />
+                <ScalarProperty Name="emailContent" ColumnName="emailContent" />
+                <ScalarProperty Name="emailSentDatetime" ColumnName="emailSentDatetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailTemplates">
+            <EntityTypeMapping TypeName="UMS.Model.EmailTemplate">
+              <MappingFragment StoreEntitySet="EmailTemplate">
+                <ScalarProperty Name="emailTemplateId" ColumnName="emailTemplateId" />
+                <ScalarProperty Name="templateTextId" ColumnName="templateTextId" />
+                <ScalarProperty Name="templateHeader" ColumnName="templateHeader" />
+                <ScalarProperty Name="templateBody" ColumnName="templateBody" />
+                <ScalarProperty Name="templateFooter" ColumnName="templateFooter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Features">
+            <EntityTypeMapping TypeName="UMS.Model.Feature">
+              <MappingFragment StoreEntitySet="Feature">
+                <ScalarProperty Name="featureId" ColumnName="featureId" />
+                <ScalarProperty Name="featureTextId" ColumnName="featureTextId" />
+                <ScalarProperty Name="featureDescription" ColumnName="featureDescription" />
+                <ScalarProperty Name="featureAction" ColumnName="featureAction" />
+                <ScalarProperty Name="featureController" ColumnName="featureController" />
+                <ScalarProperty Name="mainMenuId" ColumnName="mainMenuId" />
+                <ScalarProperty Name="subMenuId" ColumnName="subMenuId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MainMenus">
+            <EntityTypeMapping TypeName="UMS.Model.MainMenu">
+              <MappingFragment StoreEntitySet="MainMenu">
+                <ScalarProperty Name="mainMenuId" ColumnName="mainMenuId" />
+                <ScalarProperty Name="mainMenuTextId" ColumnName="mainMenuTextId" />
+                <ScalarProperty Name="mainMenuDescription" ColumnName="mainMenuDescription" />
+                <ScalarProperty Name="mainMenuOrder" ColumnName="mainMenuOrder" />
+                <ScalarProperty Name="mainMenuIcon" ColumnName="mainMenuIcon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profiles">
+            <EntityTypeMapping TypeName="UMS.Model.Profile">
+              <MappingFragment StoreEntitySet="Profile">
+                <ScalarProperty Name="profileId" ColumnName="profileId" />
+                <ScalarProperty Name="profileTextId" ColumnName="profileTextId" />
+                <ScalarProperty Name="profileDescription" ColumnName="profileDescription" />
+                <ScalarProperty Name="profileStatus" ColumnName="profileStatus" />
+                <ScalarProperty Name="updatedDatetime" ColumnName="updatedDatetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProfileFeatures">
+            <EntityTypeMapping TypeName="UMS.Model.ProfileFeature">
+              <MappingFragment StoreEntitySet="ProfileFeature">
+                <ScalarProperty Name="profileFeatureId" ColumnName="profileFeatureId" />
+                <ScalarProperty Name="profileId" ColumnName="profileId" />
+                <ScalarProperty Name="featureId" ColumnName="featureId" />
+                <ScalarProperty Name="profileFeatureStatus" ColumnName="profileFeatureStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubMenus">
+            <EntityTypeMapping TypeName="UMS.Model.SubMenu">
+              <MappingFragment StoreEntitySet="SubMenu">
+                <ScalarProperty Name="subMenuId" ColumnName="subMenuId" />
+                <ScalarProperty Name="subMenuTextId" ColumnName="subMenuTextId" />
+                <ScalarProperty Name="subMenuDescription" ColumnName="subMenuDescription" />
+                <ScalarProperty Name="subMenuOrder" ColumnName="subMenuOrder" />
+                <ScalarProperty Name="subMenuIcon" ColumnName="subMenuIcon" />
+                <ScalarProperty Name="mainMenuId" ColumnName="mainMenuId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserActivityLogs">
+            <EntityTypeMapping TypeName="UMS.Model.UserActivityLog">
+              <MappingFragment StoreEntitySet="UserActivityLog">
+                <ScalarProperty Name="userActivityLogId" ColumnName="userActivityLogId" />
+                <ScalarProperty Name="module" ColumnName="module" />
+                <ScalarProperty Name="action" ColumnName="action" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="insertedDatetime" ColumnName="insertedDatetime" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VwFeatures">
+            <EntityTypeMapping TypeName="UMS.Model.VwFeature">
+              <MappingFragment StoreEntitySet="VwFeatures">
+                <ScalarProperty Name="featureTextId" ColumnName="featureTextId" />
+                <ScalarProperty Name="profileFeatureId" ColumnName="profileFeatureId" />
+                <ScalarProperty Name="featureAction" ColumnName="featureAction" />
+                <ScalarProperty Name="featureController" ColumnName="featureController" />
+                <ScalarProperty Name="featureDescription" ColumnName="featureDescription" />
+                <ScalarProperty Name="mainMenuId" ColumnName="mainMenuId" />
+                <ScalarProperty Name="subMenuId" ColumnName="subMenuId" />
+                <ScalarProperty Name="profileId" ColumnName="profileId" />
+                <ScalarProperty Name="profileDescription" ColumnName="profileDescription" />
+                <ScalarProperty Name="featureId" ColumnName="featureId" />
+                <ScalarProperty Name="profileFeatureStatus" ColumnName="profileFeatureStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PWHistories">
+            <EntityTypeMapping TypeName="UMS.Model.PWHistory">
+              <MappingFragment StoreEntitySet="PWHistory">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Salt" ColumnName="Salt" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="ChangedDatetime" ColumnName="ChangedDatetime" />
+                <ScalarProperty Name="HistoryId" ColumnName="HistoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="UMS.Model.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="loginAttempts" ColumnName="loginAttempts" />
+                <ScalarProperty Name="accountStatus" ColumnName="accountStatus" />
+                <ScalarProperty Name="pwLockoutDatetime" ColumnName="pwLockoutDatetime" />
+                <ScalarProperty Name="DashConfig" ColumnName="DashConfig" />
+                <ScalarProperty Name="profileId" ColumnName="profileId" />
+                <ScalarProperty Name="pwExpireDatetime" ColumnName="pwExpireDatetime" />
+                <ScalarProperty Name="insertedDatetime" ColumnName="insertedDatetime" />
+                <ScalarProperty Name="updatedDatetime" ColumnName="updatedDatetime" />
+                <ScalarProperty Name="insertUserId" ColumnName="insertUserId" />
+                <ScalarProperty Name="userImage" ColumnName="userImage" />
+                <ScalarProperty Name="userStatus" ColumnName="userStatus" />
+                <ScalarProperty Name="userPhone" ColumnName="userPhone" />
+                <ScalarProperty Name="userEmail" ColumnName="userEmail" />
+                <ScalarProperty Name="salt" ColumnName="salt" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PWControlSettings">
+            <EntityTypeMapping TypeName="UMS.Model.PWControlSetting">
+              <MappingFragment StoreEntitySet="PWControlSettings">
+                <ScalarProperty Name="InsertedUserId" ColumnName="InsertedUserId" />
+                <ScalarProperty Name="InsertedDateTime" ColumnName="InsertedDateTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TextId" ColumnName="TextId" />
+                <ScalarProperty Name="CtrlSettingId" ColumnName="CtrlSettingId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActivityLogs">
+            <EntityTypeMapping TypeName="UMS.Model.ActivityLog">
+              <MappingFragment StoreEntitySet="ActivityLog">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedUserId" ColumnName="ModifiedUserId" />
+                <ScalarProperty Name="InsertedDate" ColumnName="InsertedDate" />
+                <ScalarProperty Name="InsertedUserId" ColumnName="InsertedUserId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="ActivityLogId" ColumnName="ActivityLogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActivityLogStatus">
+            <EntityTypeMapping TypeName="UMS.Model.ActivityLogStatu">
+              <MappingFragment StoreEntitySet="ActivityLogStatus">
+                <ScalarProperty Name="InsertedDate" ColumnName="InsertedDate" />
+                <ScalarProperty Name="InsertedUserId" ColumnName="InsertedUserId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ActivityLogId" ColumnName="ActivityLogId" />
+                <ScalarProperty Name="ActivityLogStatusId" ColumnName="ActivityLogStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VwUsers">
+            <EntityTypeMapping TypeName="UMS.Model.VwUser">
+              <MappingFragment StoreEntitySet="VwUser">
+                <ScalarProperty Name="accountStatus" ColumnName="accountStatus" />
+                <ScalarProperty Name="profileDescription" ColumnName="profileDescription" />
+                <ScalarProperty Name="profileId" ColumnName="profileId" />
+                <ScalarProperty Name="pwExpireDatetime" ColumnName="pwExpireDatetime" />
+                <ScalarProperty Name="insertedDatetime" ColumnName="insertedDatetime" />
+                <ScalarProperty Name="updatedDatetime" ColumnName="updatedDatetime" />
+                <ScalarProperty Name="insertUserId" ColumnName="insertUserId" />
+                <ScalarProperty Name="userImage" ColumnName="userImage" />
+                <ScalarProperty Name="userStatus" ColumnName="userStatus" />
+                <ScalarProperty Name="userPhone" ColumnName="userPhone" />
+                <ScalarProperty Name="userEmail" ColumnName="userEmail" />
+                <ScalarProperty Name="salt" ColumnName="salt" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MSSQLAccessLogs">
+            <EntityTypeMapping TypeName="UMS.Model.MSSQLAccessLog">
+              <MappingFragment StoreEntitySet="MSSQLAccessLog">
+                <ScalarProperty Name="LogStatus" ColumnName="LogStatus" />
+                <ScalarProperty Name="ClientIP" ColumnName="ClientIP" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="LogDateTime" ColumnName="LogDateTime" />
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MSSQLLogHistories">
+            <EntityTypeMapping TypeName="UMS.Model.MSSQLLogHistory">
+              <MappingFragment StoreEntitySet="MSSQLLogHistory">
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="ProcessInfo" ColumnName="ProcessInfo" />
+                <ScalarProperty Name="LogDate" ColumnName="LogDate" />
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccessLogs">
+            <EntityTypeMapping TypeName="UMS.Model.AccessLog">
+              <MappingFragment StoreEntitySet="AccessLog">
+                <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+                <ScalarProperty Name="LogoutType" ColumnName="LogoutType" />
+                <ScalarProperty Name="FailureReason" ColumnName="FailureReason" />
+                <ScalarProperty Name="EventStatus" ColumnName="EventStatus" />
+                <ScalarProperty Name="EventDesc" ColumnName="EventDesc" />
+                <ScalarProperty Name="EventType" ColumnName="EventType" />
+                <ScalarProperty Name="MacAddress" ColumnName="MacAddress" />
+                <ScalarProperty Name="ClientIP" ColumnName="ClientIP" />
+                <ScalarProperty Name="ServerIP" ColumnName="ServerIP" />
+                <ScalarProperty Name="HostName" ColumnName="HostName" />
+                <ScalarProperty Name="ServerDateTime" ColumnName="ServerDateTime" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AuditLogs">
+            <EntityTypeMapping TypeName="UMS.Model.AuditLog">
+              <MappingFragment StoreEntitySet="AuditLog">
+                <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="LogType" ColumnName="LogType" />
+                <ScalarProperty Name="dateTime" ColumnName="dateTime" />
+                <ScalarProperty Name="activity" ColumnName="activity" />
+                <ScalarProperty Name="userFullName" ColumnName="userFullName" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="auditLogId" ColumnName="auditLogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

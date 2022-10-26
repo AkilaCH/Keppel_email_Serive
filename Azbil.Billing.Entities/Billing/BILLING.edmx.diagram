@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9e0934d4ad3f43169aab7fe94661ff8f" Name="Diagram1" ZoomLevel="79">
+        <EntityTypeShape EntityType="BILLINGDBModel.AppDbConfig" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BILLINGDBModel.ADLTariff" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="BILLINGDBModel.CPI" Width="1.5" PointX="5.375" PointY="0.5" />
+        <EntityTypeShape EntityType="BILLINGDBModel.Currency" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="BILLINGDBModel.CustomerGroup" Width="1.5" PointX="8.125" PointY="3" />
+        <EntityTypeShape EntityType="BILLINGDBModel.MinOffTakeBase" Width="1.5" PointX="9.375" PointY="5.5" />
+        <EntityTypeShape EntityType="BILLINGDBModel.SubsidiaryVariableValue" Width="1.5" PointX="13.25" PointY="0.625" />
+        <EntityTypeShape EntityType="BILLINGDBModel.VariableCondition" Width="1.5" PointX="9.5" PointY="0.625" />
+        <EntityTypeShape EntityType="BILLINGDBModel.Plant" Width="1.5" PointX="3.375" PointY="15.75" />
+        <EntityTypeShape EntityType="BILLINGDBModel.Owner" Width="1.5" PointX="5.375" PointY="15.75" />
+        <EntityTypeShape EntityType="BILLINGDBModel.Building" Width="1.5" PointX="14.25" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BILLINGDBModel.ElectricityType" Width="1.5" PointX="0.625" PointY="8.875" />
+        <EntityTypeShape EntityType="BILLINGDBModel.WaterType" Width="1.5" PointX="11.25" PointY="0.625" />
+        <EntityTypeShape EntityType="BILLINGDBModel.BillingUnit" Width="1.5" PointX="3.375" PointY="4.75" />
+        <EntityTypeShape EntityType="BILLINGDBModel.ADLRecord" Width="1.5" PointX="18.25" PointY="11.625" />
+        <EntityTypeShape EntityType="BILLINGDBModel.MinOffTake" Width="1.5" PointX="0.75" PointY="17.75" />
+        <EntityTypeShape EntityType="BILLINGDBModel.MonthlyBillSummaryStatus" Width="2.5" PointX="5.125" PointY="3.125" />
+        <EntityTypeShape EntityType="BILLINGDBModel.CSVFieldConfig" Width="1.5" PointX="9.75" PointY="3" />
+        <EntityTypeShape EntityType="BILLINGDBModel.SAPConfig" Width="1.5" PointX="7.375" PointY="17.75" />
+        <EntityTypeShape EntityType="BILLINGDBModel.GeneralRate" Width="1.5" PointX="17.75" PointY="6.5" />
+        <EntityTypeShape EntityType="BILLINGDBModel.CustomerType" Width="1.5" PointX="5.375" PointY="5.375" />
+        <EntityTypeShape EntityType="BILLINGDBModel.FormulaType" Width="1.5" PointX="7.5" PointY="0.625" />
+        <EntityTypeShape EntityType="BILLINGDBModel.InvoiceConfig" Width="1.5" PointX="7.375" PointY="14.75" />
+        <EntityTypeShape EntityType="BILLINGDBModel.TariffRecord" Width="1.5" PointX="2.625" PointY="7.5" />
+        <EntityTypeShape EntityType="BILLINGDBModel.VariableValue" Width="1.5" PointX="4.5" PointY="7.75" />
+        <EntityTypeShape EntityType="BILLINGDBModel.ChangeLog" Width="1.5" PointX="15.25" PointY="4" />
+        <EntityTypeShape EntityType="BILLINGDBModel.Variable" Width="1.5" PointX="3.375" PointY="19.75" />
+        <EntityTypeShape EntityType="BILLINGDBModel.GeneralConfig" Width="1.5" PointX="5.375" PointY="20.75" />
+        <EntityTypeShape EntityType="BILLINGDBModel.TariffRecordStatu" Width="1.5" PointX="0.75" PointY="14.75" />
+        <EntityTypeShape EntityType="BILLINGDBModel.PlantVariable" Width="1.5" PointX="6.5" PointY="7.875" />
+        <EntityTypeShape EntityType="BILLINGDBModel.WaterRecord" Width="1.5" PointX="8.25" PointY="8" />
+        <EntityTypeShape EntityType="BILLINGDBModel.ElectricRecord" Width="1.5" PointX="10" PointY="15.625" />
+        <EntityTypeShape EntityType="BILLINGDBModel.PQ" Width="1.5" PointX="15.125" PointY="0.625" />
+        <EntityTypeShape EntityType="BILLINGDBModel.PQStatusHistory" Width="1.5" PointX="10.125" PointY="8" />
+        <EntityTypeShape EntityType="BILLINGDBModel.PQSubsidiaryVariable" Width="1.5" PointX="12" PointY="8.5" />
+        <EntityTypeShape EntityType="BILLINGDBModel.PSummary" Width="1.5" PointX="19.375" PointY="0.75" />
+        <EntityTypeShape EntityType="BILLINGDBModel.MailNotifiConfig" Width="2.625" PointX="23.25" PointY="0.75" />
+        <EntityTypeShape EntityType="BILLINGDBModel.MailNotifiMonthlyBillSummary" Width="1.5" PointX="11.75" PointY="16.5" />
+        <EntityTypeShape EntityType="BILLINGDBModel.ReDeclarationDemand" Width="1.5" PointX="20.25" PointY="15.25" />
+        <EntityTypeShape EntityType="BILLINGDBModel.BillingUnitFormula" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="BILLINGDBModel.PSummaryStatu" Width="1.5" PointX="11.625" PointY="2.75" />
+        <EntityTypeShape EntityType="BILLINGDBModel.QSummaryStatu" Width="1.5" PointX="17.25" PointY="3.75" />
+        <EntityTypeShape EntityType="BILLINGDBModel.QSummary" Width="1.5" PointX="21.375" PointY="0.75" />
+        <EntityTypeShape EntityType="BILLINGDBModel.MonthlyBillSummary" Width="1.5" PointX="15.875" PointY="7.375" />
+        <EntityTypeShape EntityType="BILLINGDBModel.Customer" Width="1.5" PointX="13.25" PointY="2.625" />
+        <EntityTypeShape EntityType="BILLINGDBModel.Formula" Width="1.5" PointX="7.375" PointY="5.5" />
+        <EntityTypeShape EntityType="BILLINGDBModel.BillingUnitConfig" Width="1.5" PointX="15.875" PointY="17.25" />
+        <EntityTypeShape EntityType="BILLINGDBModel.MinOffTakeRecordStatu" Width="1.5" PointX="18" PointY="16.5" />
+        <EntityTypeShape EntityType="BILLINGDBModel.ElectricWaterTariff" Width="1.5" PointX="9.375" PointY="11.75" />
+        <EntityTypeShape EntityType="BILLINGDBModel.QuarterCount" Width="1.5" PointX="5.375" PointY="11.75" />
+        <EntityTypeShape EntityType="BILLINGDBModel.MailNotificationHistory" Width="2.25" PointX="11.375" PointY="11.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

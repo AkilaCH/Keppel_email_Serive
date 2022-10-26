@@ -1,0 +1,2388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BILLINGDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ADLRecord">
+          <Key>
+            <PropertyRef Name="ADLRecordId" />
+          </Key>
+          <Property Name="ADLRecordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MonthlyBillSummaryId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="StartValue" Type="float" Nullable="false" />
+          <Property Name="EndValue" Type="float" Nullable="false" />
+          <Property Name="ADLStart1" Type="datetime" Nullable="false" />
+          <Property Name="ADLEnd1" Type="datetime" Nullable="false" />
+          <Property Name="ADLDuration1" Type="float" Nullable="false" />
+          <Property Name="ADLStartValue1" Type="float" Nullable="false" />
+          <Property Name="ADLPeakValue1" Type="float" Nullable="false" />
+          <Property Name="ADLEndValue1" Type="float" Nullable="false" />
+          <Property Name="SpikeTime1" Type="datetime" Nullable="false" />
+          <Property Name="Spike1" Type="float" Nullable="false" />
+          <Property Name="SpikeTime2" Type="datetime" Nullable="false" />
+          <Property Name="Spike2" Type="float" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="InsertUserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ADLTariff">
+          <Key>
+            <PropertyRef Name="ADLTariffId" />
+          </Key>
+          <Property Name="ADLTariffId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TariffRecordId" Type="int" Nullable="false" />
+          <Property Name="ADLFrom" Type="float" Nullable="false" />
+          <Property Name="ADLTo" Type="float" Nullable="false" />
+          <Property Name="Rate" Type="float" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="InsertedUserId" Type="int" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AppDbConfig">
+          <Key>
+            <PropertyRef Name="AppDbConfigId" />
+          </Key>
+          <Property Name="AppDbConfigId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AppTextID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DataSource" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="DataBaseName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="UserID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BillingUnit">
+          <Key>
+            <PropertyRef Name="BillingUnitId" />
+          </Key>
+          <Property Name="BillingUnitId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BuildingId" Type="int" Nullable="false" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="C_CstId" Type="int" Nullable="false" />
+          <Property Name="C_BlockId" Type="int" Nullable="false" />
+          <Property Name="BillingUnitStatus" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="InsertedUserId" Type="int" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BillingUnitConfig">
+          <Key>
+            <PropertyRef Name="BillingUnitConfigId" />
+          </Key>
+          <Property Name="BillingUnitConfigId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BillngUnitId" Type="int" Nullable="false" />
+          <Property Name="ConfigName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ConfigTextId" Type="varchar" MaxLength="15" />
+          <Property Name="ConfigValue" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="InsertedUserId" Type="int" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedUserId" Type="int" />
+          <Property Name="ModifiedDateTime" Type="datetime" />
+          <Property Name="EffectiveFrom" Type="datetime" />
+          <Property Name="EffectiveTo" Type="datetime" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BillingUnitFormula">
+          <Key>
+            <PropertyRef Name="BillingUnitFormulaId" />
+          </Key>
+          <Property Name="BillingUnitFormulaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BillingUnitId" Type="int" Nullable="false" />
+          <Property Name="EffectiveFrom" Type="datetime" Nullable="false" />
+          <Property Name="FormulaTypeId" Type="int" Nullable="false" />
+          <Property Name="Category" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="InsertedUserId" Type="int" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedUserId" Type="int" />
+          <Property Name="ModifiedDateTime" Type="datetime" />
+          <Property Name="EffectiveTo" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Building">
+          <Key>
+            <PropertyRef Name="BlockId" />
+          </Key>
+          <Property Name="BlockId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlantId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="InsertedUserId" Type="int" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="ShortName" Type="varchar" MaxLength="255" />
+          <Property Name="AddressLine_1" Type="varchar" MaxLength="255" />
+          <Property Name="AddressLine_2" Type="varchar" MaxLength="255" />
+          <Property Name="AddressLine_3" Type="varchar" MaxLength="255" />
+          <Property Name="AddressLine_4" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ChangeLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClassName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PropertyName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PrimaryKey" Type="nvarchar" MaxLength="50" />
+          <Property Name="OldValue" Type="nvarchar" MaxLength="50" />
+          <Property Name="NewValue" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateChanged" Type="datetime" />
+          <Property Name="ChangedBy" Type="int" />
+        </EntityType>
+        <EntityType Name="CPI">
+          <Key>
+            <PropertyRef Name="CpiId" />
+          </Key>
+          <Property Name="CpiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CPI" Type="float" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Month" Type="int" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="InsertedUserId" Type="int" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CSVFieldConfig">
+          <Key>
+            <PropertyRef Name="CSVFieldConfigId" />
+          </Key>
+          <Property Name="CSVFieldConfigId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FieldTextId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="FieldDescription" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="MaxLength" Type="int" Nullable="false" />
+          <Property Name="DefaultValue" Type="varchar" MaxLength="255" />
+          <Property Name="Order" Type="int" Nullable="false" />
+          <Property Name="OmitValue" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="CurrencyId" />
+          </Key>
+          <Property Name="CurrencyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Symbol" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Currency" Type="varchar" MaxLength="20" />
+          <Property Name="Status" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ForeignName" Type="varchar" MaxLength="255" />
+          <Property Name="AddressLine_1" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="AddressLine_2" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="AddressLine_3" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="AddressLine_4" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Telephone" Type="varchar" MaxLength="15" />
+          <Property Name="Fax" Type="varchar" MaxLength="10" />
+          <Property Name="GSTRegNo" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Attention" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CurrencyId" Type="int" Nullable="false" />
+          <Property Name="CustomerTypeId" Type="int" Nullable="false" />
+          <Property Name="InsertedUserId" Type="int" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedUserId" Type="int" />
+          <Property Name="ModifiedDateTime" Type="datetime" />
+          <Property Name="CustomerGroupId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CustomerGroup">
+          <Key>
+            <PropertyRef Name="CustomerGroupId" />
+          </Key>
+          <Property Name="CustomerGroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="GroupTextId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="InsertedUserId" Type="int" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CustomerType">
+          <Key>
+            <PropertyRef Name="CustomerTypeId" />
+          </Key>
+          <Property Name="CustomerTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="InsertedUserId" Type="int" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ElectricityType">
+          <Key>
+            <PropertyRef Name="ElectricityTypeId" />
+          </Key>
+          <Property Name="ElectricityTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ElectricRecord">
+          <Key>
+            <PropertyRef Name="ElectricRecordId" />
+          </Key>
+          <Property Name="ElectricRecordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlantId" Type="int" Nullable="false" />
+          <Property Name="ElectricityTypeId" Type="int" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Month" Type="int" Nullable="false" />
+          <Property Name="ElecTariff" Type="float" Nullable="false" />
+          <Property Name="PeakValue" Type="float" Nullable="false" />
+          <Property Name="OffPeakValue" Type="float" Nullable="false" />
+          <Property Name="PeakValueFac" Type="float" Nullable="false" />
+          <Property Name="OffPeakValueFac" Type="float" Nullable="false" />
+          <Property Name="PeakAvg" Type="float" Nullable="false" />
+          <Property Name="OffPeakAvg" Type="float" Nullable="false" />
+          <Property Name="PeakOffPeakAvg" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ElectricWaterTariff">
+          <Key>
+            <PropertyRef Name="ElectricWaterTariffId" />
+          </Key>
+          <Property Name="ElectricWaterTariffId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Month" Type="int" Nullable="false" />
+          <Property Name="Electric" Type="float" Nullable="false" />
+          <Property Name="ElectricPeak" Type="float" />
+          <Property Name="ElectricOffPeak" Type="float" />
+          <Property Name="Water" Type="float" Nullable="false" />
+          <Property Name="ECCCn" Type="float" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="InsertedUserId" Type="int" Nullable="false" />
+          <Property Name="ElectricOP" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Formula">
+          <Key>
+            <PropertyRef Name="FormulaId" />
+          </Key>
+          <Property Name="FormulaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FormulaText" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="InsertedUserId" Type="int" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="Category" Type="varchar" MaxLength="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FormulaType">
+          <Key>
+            <PropertyRef Name="FormulaTypeId" />
+          </Key>
+          <Property Name="FormulaTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FormulaId" Type="int" Nullable="false" />
+          <Property Name="CustomerTypeId" Type="int" Nullable="false" />
+          <Property Name="InsertedUserId" Type="int" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GeneralConfig">
+          <Key>
+            <PropertyRef Name="GeneralConfigId" />
+          </Key>
+          <Property Name="GeneralConfigId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TextId" Type="varchar" MaxLength="100" />
+          <Property Name="Value" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="varchar" MaxLength="10" />
+          <Property Name="EffectiveFrom" Type="datetime" />
+          <Property Name="EffectiveTo" Type="datetime" />
+          <Property Name="InsertedTime" Type="datetime" />
+          <Property Name="InsertedUserId" Type="int" />
+        </EntityType>
+        <EntityType Name="GeneralRate">
+          <Key>
+            <PropertyRef Name="GeneralRateId" />
+          </Key>
+          <Property Name="GeneralRateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TextId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Value" Type="float" Nullable="false" />
+          <Property Name="EffectiveFrom" Type="datetime" Nullable="false" />
+          <Property Name="EffectiveTo" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InvoiceConfig">
+          <Key>
+            <PropertyRef Name="InvoiceConfigId" />
+          </Key>
+          <Property Name="InvoiceConfigId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TextId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Value" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+      <EntityType Name="FixedDemandCharge">
+        <Key>
+          <PropertyRef Name="FDID" />
+        </Key>
+        <Property Name="FDID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+       <Property Name="Rate" Type="float" Nullable="false" />
+     
+      </EntityType>
+        <EntityType Name="FixedDemandCharges">
+          <Key>
+            <PropertyRef Name="FDID"/>
+          </Key>
+          <Property Name="FDID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="255" Nullable="false" />
+         <Property Name="Rate" Type="float" Nullable="false" />
+       </EntityType>
+        <EntityType Name="MailNotificationHistory">
+          <Key>
+            <PropertyRef Name="MailID" />
+          </Key>
+          <Property Name="MailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="Subject" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="ContextTextId" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="MailBody" Type="varchar" MaxLength="5500" Nullable="false" />
+          <Property Name="SenderMailAddress" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RecieverMailAddress" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="InsertedUserId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CCRecipientAddress" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="MailNotifiConfig">
+          <Key>
+            <PropertyRef Name="MailConfigId" />
+          </Key>
+          <Property Name="MailConfigId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContextTextId" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Subject" Type="varchar" MaxLength="800" Nullable="false" />
+          <Property Name="Header" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="MailContentTemplate" Type="varchar" MaxLength="5000" Nullable="false" />
+          <Property Name="Footer" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CCRecipientAddressList" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="MailNotifiMonthlyBillSummary">
+          <Key>
+            <PropertyRef Name="MailBillSummaryId" />
+          </Key>
+          <Property Name="MailBillSummaryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MonthlyBillSummaryId" Type="int" Nullable="false" />
+          <Property Name="BillingUnitId" Type="int" Nullable="false" />
+          <Property Name="BillingDate" Type="datetime" Nullable="false" />
+          <Property Name="MonthlyBillSummaryStatus" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MailID" Type="int" Nullable="false" />
+          <Property Name="MailBillSummaryStatus" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MinOffTake">
+          <Key>
+            <PropertyRef Name="MinOffTakeId" />
+          </Key>
+          <Property Name="MinOffTakeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BillingUnitId" Type="int" Nullable="false" />
+          <Property Name="MinOffTakeBaseId" Type="int" Nullable="false" />
+          <Property Name="EffectiveFrom" Type="datetime" Nullable="false" />
+          <Property Name="EffectiveTo" Type="datetime" Nullable="false" />
+          <Property Name="DDL" Type="int" />
+          <Property Name="DDLPercentage" Type="float" />
+          <Property Name="DIL" Type="int" />
+          <Property Name="DILPercentage" Type="float" />
+          <Property Name="DUH" Type="float" />
+          <Property Name="DUHPercentage" Type="float" />
+          <Property Name="MinOffTakeValue" Type="float" Nullable="false" />
+          <Property Name="InsertedDate" Type="datetime" Nullable="false" />
+          <Property Name="InsertedUserId" Type="int" Nullable="false" />
+          <Property Name="ModifiedUserId" Type="int" />
+          <Property Name="ModifiedDateTime" Type="datetime" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MinOffTakeBase">
+          <Key>
+            <PropertyRef Name="MinOffTakeBaseId" />
+          </Key>
+          <Property Name="MinOffTakeBaseId" Type="int" Nullable="false" />
+          <Property Name="BaseDescription" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="InsertedUserId" Type="int" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedUserId" Type="int" />
+          <Property Name="ModifiedDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="MinOffTakeRecordStatus">
+          <Key>
+            <PropertyRef Name="MinOffTakeRecordStatusId" />
+          </Key>
+          <Property Name="MinOffTakeRecordStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MinOffTakeRecordId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="InsertedUserId" Type="int" Nullable="false" />
+          <Property Name="InsertedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedUserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MonthlyBillSummary">
+          <Key>
+            <PropertyRef Name="MonthlyBillSummaryId" />
+          </Key>
+          <Property Name="MonthlyBillSummaryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BillingUnitId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="StartValue" Type="float" Nullable="false" />
+          <Property Name="EndValue" Type="float" Nullable="false" />
+          <Property Name="DCQuantity" Type="float" Nullable="false" />
+          <Property Name="ECQuantity" Type="float" Nullable="false" />
+          <Property Name="ActualECValue" Type="float" Nullable="false" />
+          <Property Name="MinOfftakeShortFall" Type="float" />
+          <Property Name="MinOfftakeCharge" Type="float" />
+          <Property Name="DCRate" Type="float" Nullable="false" />
+          <Property Name="ECRate" Type="float" Nullable="false" />
+          <Property Name="ADLMaxPeekValue" Type="float" />
+          <Property Name="MaxPeak1" Type="float" />
+          <Property Name="MaxPeak2" Type="float" />
+          <Property Name="MaxPeakStart1" Type="datetime" />
+          <Property Name="MaxPeakStart2" Type="datetime" />
+          <Property Name="ADLQuantity" Type="float" />
+          <Property Name="ADLRate" Type="float" />
+          <Property Name="ADLUnitPrice" Type="float" />
+          <Property Name="InsertedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="InsertUserId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DocumentNo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="GSTRate" Type="float" Nullable="false" />
+          <Property Name="SpikeValue1" Type="float" Nullable="false" />
+          <Property Name="SpikeTime1" Type="datetime" />
+          <Property Name="SpikeValue2" Type="float" Nullable="false" />
+          <Property Name="SpikeTime2" Type="datetime" />
+          <Property Name="PerDayConsuption" Type="float" />
+          <Property Name="catergory" Type="varchar" MaxLength="5" />
+          <Property Name="BillToDate" Type="datetime" />
+          <Property Name="DCRateEstimate" Type="float" />
+          <Property Name="ECRateEstimate" Type="float" />
+          <Property Name="ECStartValueEstimate" Type="float" />
+          <Property Name="ECEndValueEstimate" Type="float" />
+          <Property Name="ECSum" Type="float" />
+        </EntityType>
+        <EntityType Name="MonthlyBillSummaryStatus">
+          <Key>
+            <PropertyRef Name="MonthlyBillSummaryStatusId" />
+          </Key>
+          <Property Name="MonthlyBillSummaryStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MonthlyBillSummaryId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="InsertedUserId" Type="int" Nullable="false" />
+          <Property Name="InsertedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Owner">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="AddressLine_1" Type="varchar" MaxLength="255" />
+          <Property Name="AddressLine_2" Type="varchar" MaxLength="255" />
+          <Property Name="AddressLine_3" Type="varchar" MaxLength="255" />
+          <Property Name="AddressLine_4" Type="varchar" MaxLength="255" />
+          <Property Name="WebSite" Type="varchar" MaxLength="255" />
+          <Property Name="CoRegNo" Type="varchar" MaxLength="20" />
+          <Property Name="Telephone" Type="varchar" MaxLength="10" />
+          <Property Name="Fax" Type="varchar" MaxLength="20" />
+          <Property Name="InsertedUserId" Type="int" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Plant">
+          <Key>
+            <PropertyRef Name="PlantId" />
+          </Key>
+          <Property Name="PlantId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="InsertedUserId" Type="int" Nullable="false" />
+          <Property Name="AppTextId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ProfitCenter" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="PlantVariable">
+          <Key>
+            <PropertyRef Name="PlantVariableId" />
+          </Key>
+          <Property Name="PlantVariableId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlantId" Type="int" Nullable="false" />
+          <Property Name="Variable" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TextId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Value" Type="float" Nullable="false" />
+          <Property Name="EffectiveFrom" Type="datetime" Nullable="false" />
+          <Property Name="EffectiveTo" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="InsertedUserId" Type="int" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PQ">
+          <Key>
+            <PropertyRef Name="PQId" />
+          </Key>
+          <Property Name="PQId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlantId" Type="int" Nullable="false" />
+          <Property Name="Variable" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Value" Type="float" Nullable="false" />
+          <Property Name="EffectiveFrom" Type="datetime" Nullable="false" />
+          <Property Name="EffectiveTo" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="InsertUserId" Type="int" Nullable="false" />
+          <Property Name="UpdatedUserId" Type="int" />
+          <Property Name="InsertedTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PQStatusHistory">
+          <Key>
+            <PropertyRef Name="PQStatusHistoryId" />
+          </Key>
+          <Property Name="PQStatusHistoryId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="PQId" Type="int" Nullable="false" />
+          <Property Name="InsertedUserId" Type="int" Nullable="false" />
+          <Property Name="InsertedTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PQSubsidiaryVariable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PQId" Type="int" Nullable="false" />
+          <Property Name="Variable" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Value" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PSummary">
+          <Key>
+            <PropertyRef Name="PSummaryId" />
+          </Key>
+          <Property Name="PSummaryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NPCYearly" Type="float" Nullable="false" />
+          <Property Name="DCC" Type="float" Nullable="false" />
+          <Property Name="DDL" Type="float" Nullable="false" />
+          <Property Name="DIL" Type="float" Nullable="false" />
+          <Property Name="Efficiency" Type="float" Nullable="false" />
+          <Property Name="TUR" Type="float" Nullable="false" />
+          <Property Name="DF" Type="float" Nullable="false" />
+          <Property Name="ECCCMonthly" Type="float" Nullable="false" />
+          <Property Name="ECCCCost" Type="float" Nullable="false" />
+          <Property Name="NPC" Type="float" Nullable="false" />
+          <Property Name="RC" Type="float" Nullable="false" />
+          <Property Name="TPC" Type="float" Nullable="false" />
+          <Property Name="Other" Type="float" Nullable="false" />
+          <Property Name="TC" Type="float" Nullable="false" />
+          <Property Name="TUC" Type="float" Nullable="false" />
+          <Property Name="ATC" Type="float" Nullable="false" />
+          <Property Name="APV" Type="float" />
+          <Property Name="PV" Type="float" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Month" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="InsertedTime" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="PlantId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PSummaryStatus">
+          <Key>
+            <PropertyRef Name="PSummaryStatusId" />
+          </Key>
+          <Property Name="PSummaryStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PSummaryId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="InsertedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QSummary">
+          <Key>
+            <PropertyRef Name="QSummaryId" />
+          </Key>
+          <Property Name="QSummaryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WA" Type="float" Nullable="false" />
+          <Property Name="Efficiency" Type="float" Nullable="false" />
+          <Property Name="ET" Type="float" Nullable="false" />
+          <Property Name="WT" Type="float" Nullable="false" />
+          <Property Name="ECost" Type="float" Nullable="false" />
+          <Property Name="WCost" Type="float" Nullable="false" />
+          <Property Name="TCost" Type="float" Nullable="false" />
+          <Property Name="ATC" Type="float" />
+          <Property Name="AQV" Type="float" />
+          <Property Name="QV" Type="float" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Month" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="InsertedTime" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="PlantId" Type="int" Nullable="false" />
+          <Property Name="AWL" Type="float" Nullable="false" />
+          <Property Name="AWC" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QSummaryStatus">
+          <Key>
+            <PropertyRef Name="QSummaryStatusId" />
+          </Key>
+          <Property Name="QSummaryStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QSummaryId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="InsertedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuarterCount">
+          <Key>
+            <PropertyRef Name="QuarterCountId" />
+          </Key>
+          <Property Name="QuarterCountId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BillingUnitId" Type="int" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Quarter" Type="int" Nullable="false" />
+          <Property Name="NValue" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReDeclarationDemand">
+          <Key>
+            <PropertyRef Name="ReDeclarationDemandId" />
+          </Key>
+          <Property Name="ReDeclarationDemandId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BillingUnitId" Type="int" Nullable="false" />
+          <Property Name="DDL" Type="int" Nullable="false" />
+          <Property Name="DIL" Type="int" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="YearHalf" Type="int" Nullable="false" />
+          <Property Name="EffectiveFrom" Type="datetime" Nullable="false" />
+          <Property Name="EffectiveTo" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="InsertedUserId" Type="int" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="datetime" />
+          <Property Name="ModifiedUserId" Type="int" />
+        </EntityType>
+        <EntityType Name="SAPConfig">
+          <Key>
+            <PropertyRef Name="SAPConfigId" />
+          </Key>
+          <Property Name="SAPConfigId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TextId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Value" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubsidiaryVariableValue">
+          <Key>
+            <PropertyRef Name="BillingUnitFormulaId" />
+          </Key>
+          <Property Name="BillingUnitFormulaId" Type="int" Nullable="false" />
+          <Property Name="Variable" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Value" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TariffRecord">
+          <Key>
+            <PropertyRef Name="TariffRecordId" />
+          </Key>
+          <Property Name="TariffRecordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BillingUnitId" Type="int" Nullable="false" />
+          <Property Name="DDL" Type="float" Nullable="false" />
+          <Property Name="DCEffectiveFrom" Type="datetime" />
+          <Property Name="ECEffectiveFrom" Type="datetime" />
+          <Property Name="DCEffectiveTo" Type="datetime" />
+          <Property Name="ECEffectiveTo" Type="datetime" />
+          <Property Name="DCAnnumRate" Type="float" />
+          <Property Name="DCMonthlyRate" Type="float" />
+          <Property Name="ECRate" Type="float" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="QuaterNo" Type="int" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="InsertUserId" Type="int" Nullable="false" />
+          <Property Name="InsertDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TariffRecordStatus">
+          <Key>
+            <PropertyRef Name="TariffRecordStatusId" />
+          </Key>
+          <Property Name="TariffRecordStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TariffRecordId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="InsertedUserId" Type="int" Nullable="false" />
+          <Property Name="InsertedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedUserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Variable">
+          <Key>
+            <PropertyRef Name="VariableId" />
+          </Key>
+          <Property Name="VariableId" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="Unit" Type="varchar" MaxLength="10" />
+          <Property Name="Mode" Type="varchar" MaxLength="10" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="InsertedUserId" Type="int" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="TextId" Type="varchar" MaxLength="255" />
+          <Property Name="TextInfo" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="VariableConditions">
+          <Key>
+            <PropertyRef Name="VariableConditionId" />
+          </Key>
+          <Property Name="VariableConditionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Variable" Type="varchar" MaxLength="10" />
+          <Property Name="ConditionTextId" Type="varchar" MaxLength="50" />
+          <Property Name="Value" Type="varchar" MaxLength="50" />
+          <Property Name="InsertedUserId" Type="int" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VariableValue">
+          <Key>
+            <PropertyRef Name="VariableValueId" />
+          </Key>
+          <Property Name="VariableValueId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TariffRecordId" Type="int" Nullable="false" />
+          <Property Name="Variable" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Value" Type="float" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WaterRecord">
+          <Key>
+            <PropertyRef Name="WaterRecordId" />
+          </Key>
+          <Property Name="WaterRecordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlantId" Type="int" Nullable="false" />
+          <Property Name="WaterTypeId" Type="int" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Month" Type="int" Nullable="false" />
+          <Property Name="WaterTariff" Type="float" Nullable="false" />
+          <Property Name="WaterAvg" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WaterType">
+          <Key>
+            <PropertyRef Name="WaterTypeId" />
+          </Key>
+          <Property Name="WaterTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="BILLINGDBModelStoreContainer">
+          <EntitySet Name="ADLRecord" EntityType="Self.ADLRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ADLTariff" EntityType="Self.ADLTariff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AppDbConfig" EntityType="Self.AppDbConfig" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BillingUnit" EntityType="Self.BillingUnit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BillingUnitConfig" EntityType="Self.BillingUnitConfig" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BillingUnitFormula" EntityType="Self.BillingUnitFormula" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Building" EntityType="Self.Building" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChangeLog" EntityType="Self.ChangeLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CPI" EntityType="Self.CPI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CSVFieldConfig" EntityType="Self.CSVFieldConfig" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerGroup" EntityType="Self.CustomerGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerType" EntityType="Self.CustomerType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ElectricityType" EntityType="Self.ElectricityType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ElectricRecord" EntityType="Self.ElectricRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ElectricWaterTariff" EntityType="Self.ElectricWaterTariff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Formula" EntityType="Self.Formula" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FormulaType" EntityType="Self.FormulaType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GeneralConfig" EntityType="Self.GeneralConfig" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GeneralRate" EntityType="Self.GeneralRate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InvoiceConfig" EntityType="Self.InvoiceConfig" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FixedDemandCharge" EntityType="Self.FixedDemandCharge" Schema="dbo" store:Type="Tables" />
+          
+          <EntitySet Name="MailNotificationHistory" EntityType="Self.MailNotificationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MailNotifiConfig" EntityType="Self.MailNotifiConfig" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MailNotifiMonthlyBillSummary" EntityType="Self.MailNotifiMonthlyBillSummary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MinOffTake" EntityType="Self.MinOffTake" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MinOffTakeBase" EntityType="Self.MinOffTakeBase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MinOffTakeRecordStatus" EntityType="Self.MinOffTakeRecordStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MonthlyBillSummary" EntityType="Self.MonthlyBillSummary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MonthlyBillSummaryStatus" EntityType="Self.MonthlyBillSummaryStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Owner" EntityType="Self.Owner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Plant" EntityType="Self.Plant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlantVariable" EntityType="Self.PlantVariable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PQ" EntityType="Self.PQ" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PQStatusHistory" EntityType="Self.PQStatusHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PQSubsidiaryVariable" EntityType="Self.PQSubsidiaryVariable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PSummary" EntityType="Self.PSummary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PSummaryStatus" EntityType="Self.PSummaryStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QSummary" EntityType="Self.QSummary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QSummaryStatus" EntityType="Self.QSummaryStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuarterCount" EntityType="Self.QuarterCount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReDeclarationDemand" EntityType="Self.ReDeclarationDemand" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SAPConfig" EntityType="Self.SAPConfig" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubsidiaryVariableValue" EntityType="Self.SubsidiaryVariableValue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TariffRecord" EntityType="Self.TariffRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TariffRecordStatus" EntityType="Self.TariffRecordStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Variable" EntityType="Self.Variable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VariableConditions" EntityType="Self.VariableConditions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VariableValue" EntityType="Self.VariableValue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WaterRecord" EntityType="Self.WaterRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WaterType" EntityType="Self.WaterType" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BILLINGDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AppDbConfig">
+          <Key>
+            <PropertyRef Name="AppDbConfigId" />
+          </Key>
+          <Property Name="AppDbConfigId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AppTextID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DataSource" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DataBaseName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="BILLINGDB" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AppDbConfigs" EntityType="Self.AppDbConfig" />
+          <EntitySet Name="ADLTariffs" EntityType="BILLINGDBModel.ADLTariff" />
+          <EntitySet Name="CPIs" EntityType="BILLINGDBModel.CPI" />
+          <EntitySet Name="Currencies" EntityType="BILLINGDBModel.Currency" />
+          <EntitySet Name="CustomerGroups" EntityType="BILLINGDBModel.CustomerGroup" />
+          <EntitySet Name="MinOffTakeBases" EntityType="BILLINGDBModel.MinOffTakeBase" />
+          <EntitySet Name="SubsidiaryVariableValues" EntityType="BILLINGDBModel.SubsidiaryVariableValue" />
+          <EntitySet Name="VariableConditions" EntityType="BILLINGDBModel.VariableCondition" />
+          <EntitySet Name="Plants" EntityType="BILLINGDBModel.Plant" />
+          <EntitySet Name="Owners" EntityType="BILLINGDBModel.Owner" />
+          <EntitySet Name="Buildings" EntityType="BILLINGDBModel.Building" />
+          <EntitySet Name="ElectricityTypes" EntityType="BILLINGDBModel.ElectricityType" />
+          <EntitySet Name="WaterTypes" EntityType="BILLINGDBModel.WaterType" />
+          <EntitySet Name="BillingUnits" EntityType="BILLINGDBModel.BillingUnit" />
+          <EntitySet Name="ADLRecords" EntityType="BILLINGDBModel.ADLRecord" />
+          <EntitySet Name="MinOffTakes" EntityType="BILLINGDBModel.MinOffTake" />
+          <EntitySet Name="MonthlyBillSummaryStatus1" EntityType="BILLINGDBModel.MonthlyBillSummaryStatus" />
+          <EntitySet Name="CSVFieldConfigs" EntityType="BILLINGDBModel.CSVFieldConfig" />
+          <EntitySet Name="SAPConfigs" EntityType="BILLINGDBModel.SAPConfig" />
+          <EntitySet Name="GeneralRates" EntityType="BILLINGDBModel.GeneralRate" />
+          <EntitySet Name="CustomerTypes" EntityType="BILLINGDBModel.CustomerType" />
+          <EntitySet Name="FormulaTypes" EntityType="BILLINGDBModel.FormulaType" />
+          <EntitySet Name="InvoiceConfigs" EntityType="BILLINGDBModel.InvoiceConfig" />
+         <EntitySet Name="FixedDemandCharges" EntityType="BILLINGDBModel.FixedDemandCharge" />
+          <EntitySet Name="TariffRecords" EntityType="BILLINGDBModel.TariffRecord" />
+          <EntitySet Name="VariableValues" EntityType="BILLINGDBModel.VariableValue" />
+          <EntitySet Name="ChangeLogs" EntityType="BILLINGDBModel.ChangeLog" />
+          <EntitySet Name="Variables" EntityType="BILLINGDBModel.Variable" />
+          <EntitySet Name="GeneralConfigs" EntityType="BILLINGDBModel.GeneralConfig" />
+          <EntitySet Name="TariffRecordStatus" EntityType="BILLINGDBModel.TariffRecordStatu" />
+          <EntitySet Name="PlantVariables" EntityType="BILLINGDBModel.PlantVariable" />
+          <EntitySet Name="WaterRecords" EntityType="BILLINGDBModel.WaterRecord" />
+          <EntitySet Name="ElectricRecords" EntityType="BILLINGDBModel.ElectricRecord" />
+          <EntitySet Name="PQs" EntityType="BILLINGDBModel.PQ" />
+          <EntitySet Name="PQStatusHistories" EntityType="BILLINGDBModel.PQStatusHistory" />
+          <EntitySet Name="PQSubsidiaryVariables" EntityType="BILLINGDBModel.PQSubsidiaryVariable" />
+          <EntitySet Name="PSummaries" EntityType="BILLINGDBModel.PSummary" />
+          <EntitySet Name="MailNotifiConfigs" EntityType="BILLINGDBModel.MailNotifiConfig" />
+          <EntitySet Name="MailNotifiMonthlyBillSummaries" EntityType="BILLINGDBModel.MailNotifiMonthlyBillSummary" />
+          <EntitySet Name="ReDeclarationDemands" EntityType="BILLINGDBModel.ReDeclarationDemand" />
+          <EntitySet Name="BillingUnitFormulas" EntityType="BILLINGDBModel.BillingUnitFormula" />
+          <EntitySet Name="PSummaryStatus" EntityType="BILLINGDBModel.PSummaryStatu" />
+          <EntitySet Name="QSummaryStatus" EntityType="BILLINGDBModel.QSummaryStatu" />
+          <EntitySet Name="QSummaries" EntityType="BILLINGDBModel.QSummary" />
+          <EntitySet Name="MonthlyBillSummaries" EntityType="BILLINGDBModel.MonthlyBillSummary" />
+          <EntitySet Name="Customers" EntityType="BILLINGDBModel.Customer" />
+          <EntitySet Name="Formulae" EntityType="BILLINGDBModel.Formula" />
+          <EntitySet Name="BillingUnitConfigs" EntityType="BILLINGDBModel.BillingUnitConfig" />
+          <EntitySet Name="MinOffTakeRecordStatus" EntityType="BILLINGDBModel.MinOffTakeRecordStatu" />
+          <EntitySet Name="ElectricWaterTariffs" EntityType="BILLINGDBModel.ElectricWaterTariff" />
+          <EntitySet Name="QuarterCounts" EntityType="BILLINGDBModel.QuarterCount" />
+          <EntitySet Name="MailNotificationHistories" EntityType="BILLINGDBModel.MailNotificationHistory" />
+        </EntityContainer>
+        <EntityType Name="ADLTariff">
+          <Key>
+            <PropertyRef Name="ADLTariffId" />
+          </Key>
+          <Property Name="ADLTariffId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TariffRecordId" Type="Int32" Nullable="false" />
+          <Property Name="ADLFrom" Type="Double" Nullable="false" />
+          <Property Name="ADLTo" Type="Double" Nullable="false" />
+          <Property Name="Rate" Type="Double" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="InsertedUserId" Type="Int32" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="CPI">
+          <Key>
+            <PropertyRef Name="CpiId" />
+          </Key>
+          <Property Name="CpiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CPI1" Type="Double" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Month" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="InsertedUserId" Type="Int32" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="CurrencyId" />
+          </Key>
+          <Property Name="CurrencyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Symbol" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Currency1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CustomerGroup">
+          <Key>
+            <PropertyRef Name="CustomerGroupId" />
+          </Key>
+          <Property Name="CustomerGroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="GroupTextId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="InsertedUserId" Type="Int32" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="MinOffTakeBase">
+          <Key>
+            <PropertyRef Name="MinOffTakeBaseId" />
+          </Key>
+          <Property Name="MinOffTakeBaseId" Type="Int32" Nullable="false" />
+          <Property Name="BaseDescription" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InsertedUserId" Type="Int32" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedUserId" Type="Int32" />
+          <Property Name="ModifiedDateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SubsidiaryVariableValue">
+          <Key>
+            <PropertyRef Name="BillingUnitFormulaId" />
+          </Key>
+          <Property Name="BillingUnitFormulaId" Type="Int32" Nullable="false" />
+          <Property Name="Variable" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VariableCondition">
+          <Key>
+            <PropertyRef Name="VariableConditionId" />
+          </Key>
+          <Property Name="VariableConditionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Variable" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ConditionTextId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InsertedUserId" Type="Int32" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Plant">
+          <Key>
+            <PropertyRef Name="PlantId" />
+          </Key>
+          <Property Name="PlantId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="InsertedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="InsertedUserId" Type="Int32" Nullable="false" />
+          <Property Name="AppTextId" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ProfitCenter" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Owner">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="AddressLine_1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="AddressLine_2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="AddressLine_3" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="AddressLine_4" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="WebSite" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CoRegNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Telephone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Fax" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="InsertedUserId" Type="Int32" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Building">
+          <Key>
+            <PropertyRef Name="BlockId" />
+          </Key>
+          <Property Name="BlockId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlantId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="InsertedUserId" Type="Int32" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ShortName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="AddressLine_1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="AddressLine_2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="AddressLine_3" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="AddressLine_4" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ElectricityType">
+          <Key>
+            <PropertyRef Name="ElectricityTypeId" />
+          </Key>
+          <Property Name="ElectricityTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="WaterType">
+          <Key>
+            <PropertyRef Name="WaterTypeId" />
+          </Key>
+          <Property Name="WaterTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="BillingUnit">
+          <Key>
+            <PropertyRef Name="BillingUnitId" />
+          </Key>
+          <Property Name="BillingUnitId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BuildingId" Type="Int32" Nullable="false" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="C_CstId" Type="Int32" Nullable="false" />
+          <Property Name="C_BlockId" Type="Int32" Nullable="false" />
+          <Property Name="BillingUnitStatus" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="InsertedUserId" Type="Int32" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ADLRecord">
+          <Key>
+            <PropertyRef Name="ADLRecordId" />
+          </Key>
+          <Property Name="ADLRecordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MonthlyBillSummaryId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StartValue" Type="Double" Nullable="false" />
+          <Property Name="EndValue" Type="Double" Nullable="false" />
+          <Property Name="ADLStart1" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ADLEnd1" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ADLDuration1" Type="Double" Nullable="false" />
+          <Property Name="ADLStartValue1" Type="Double" Nullable="false" />
+          <Property Name="ADLPeakValue1" Type="Double" Nullable="false" />
+          <Property Name="ADLEndValue1" Type="Double" Nullable="false" />
+          <Property Name="SpikeTime1" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Spike1" Type="Double" Nullable="false" />
+          <Property Name="SpikeTime2" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Spike2" Type="Double" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="InsertUserId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MinOffTake">
+          <Key>
+            <PropertyRef Name="MinOffTakeId" />
+          </Key>
+          <Property Name="MinOffTakeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BillingUnitId" Type="Int32" Nullable="false" />
+          <Property Name="MinOffTakeBaseId" Type="Int32" Nullable="false" />
+          <Property Name="EffectiveFrom" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EffectiveTo" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DDL" Type="Int32" />
+          <Property Name="DDLPercentage" Type="Double" />
+          <Property Name="DIL" Type="Int32" />
+          <Property Name="DILPercentage" Type="Double" />
+          <Property Name="DUH" Type="Double" />
+          <Property Name="DUHPercentage" Type="Double" />
+          <Property Name="MinOffTakeValue" Type="Double" Nullable="false" />
+          <Property Name="InsertedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="InsertedUserId" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedUserId" Type="Int32" />
+          <Property Name="ModifiedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MonthlyBillSummaryStatus">
+          <Key>
+            <PropertyRef Name="MonthlyBillSummaryStatusId" />
+          </Key>
+          <Property Name="MonthlyBillSummaryStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MonthlyBillSummaryId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="InsertedUserId" Type="Int32" Nullable="false" />
+          <Property Name="InsertedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="CSVFieldConfig">
+          <Key>
+            <PropertyRef Name="CSVFieldConfigId" />
+          </Key>
+          <Property Name="CSVFieldConfigId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FieldTextId" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FieldDescription" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="MaxLength" Type="Int32" Nullable="false" />
+          <Property Name="Order" Type="Int32" Nullable="false" />
+          <Property Name="DefaultValue" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="OmitValue" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SAPConfig">
+          <Key>
+            <PropertyRef Name="SAPConfigId" />
+          </Key>
+          <Property Name="SAPConfigId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TextId" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="GeneralRate">
+          <Key>
+            <PropertyRef Name="GeneralRateId" />
+          </Key>
+          <Property Name="GeneralRateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TextId" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="Double" Nullable="false" />
+          <Property Name="EffectiveFrom" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EffectiveTo" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="CustomerType">
+          <Key>
+            <PropertyRef Name="CustomerTypeId" />
+          </Key>
+          <Property Name="CustomerTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="InsertedUserId" Type="Int32" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="FormulaType">
+          <Key>
+            <PropertyRef Name="FormulaTypeId" />
+          </Key>
+          <Property Name="FormulaTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FormulaId" Type="Int32" Nullable="false" />
+          <Property Name="CustomerTypeId" Type="Int32" Nullable="false" />
+          <Property Name="InsertedUserId" Type="Int32" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="FixedDemandCharge">
+          <Key>
+            <PropertyRef Name="FDID" />
+          </Key>
+          <Property Name="FDID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+       <Property Name="Rate" Type="Double" Nullable="false" />
+        
+        </EntityType>
+        
+        <EntityType Name="InvoiceConfig">
+          <Key>
+            <PropertyRef Name="InvoiceConfigId" />
+          </Key>
+          <Property Name="InvoiceConfigId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TextId" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TariffRecord">
+          <Key>
+            <PropertyRef Name="TariffRecordId" />
+          </Key>
+          <Property Name="TariffRecordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BillingUnitId" Type="Int32" Nullable="false" />
+          <Property Name="DDL" Type="Double" Nullable="false" />
+          <Property Name="DCEffectiveFrom" Type="DateTime" Precision="3" />
+          <Property Name="ECEffectiveFrom" Type="DateTime" Precision="3" />
+          <Property Name="DCEffectiveTo" Type="DateTime" Precision="3" />
+          <Property Name="ECEffectiveTo" Type="DateTime" Precision="3" />
+          <Property Name="DCAnnumRate" Type="Double" />
+          <Property Name="DCMonthlyRate" Type="Double" />
+          <Property Name="ECRate" Type="Double" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="QuaterNo" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="InsertUserId" Type="Int32" Nullable="false" />
+          <Property Name="InsertDateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="VariableValue">
+          <Key>
+            <PropertyRef Name="VariableValueId" />
+          </Key>
+          <Property Name="VariableValueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TariffRecordId" Type="Int32" Nullable="false" />
+          <Property Name="Variable" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="Double" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ChangeLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClassName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PropertyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PrimaryKey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OldValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NewValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateChanged" Type="DateTime" Precision="3" />
+          <Property Name="ChangedBy" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Variable">
+          <Key>
+            <PropertyRef Name="VariableId" />
+          </Key>
+          <Property Name="VariableId" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Unit" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Mode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="InsertedUserId" Type="Int32" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TextId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TextInfo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="GeneralConfig">
+          <Key>
+            <PropertyRef Name="GeneralConfigId" />
+          </Key>
+          <Property Name="GeneralConfigId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TextId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EffectiveFrom" Type="DateTime" Precision="3" />
+          <Property Name="EffectiveTo" Type="DateTime" Precision="3" />
+          <Property Name="InsertedTime" Type="DateTime" Precision="3" />
+          <Property Name="InsertedUserId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TariffRecordStatu">
+          <Key>
+            <PropertyRef Name="TariffRecordStatusId" />
+          </Key>
+          <Property Name="TariffRecordStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TariffRecordId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="InsertedUserId" Type="Int32" Nullable="false" />
+          <Property Name="InsertedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedUserId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PlantVariable">
+          <Key>
+            <PropertyRef Name="PlantVariableId" />
+          </Key>
+          <Property Name="PlantVariableId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlantId" Type="Int32" Nullable="false" />
+          <Property Name="Variable" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TextId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="Double" Nullable="false" />
+          <Property Name="EffectiveFrom" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EffectiveTo" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="InsertedUserId" Type="Int32" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="WaterRecord">
+          <Key>
+            <PropertyRef Name="WaterRecordId" />
+          </Key>
+          <Property Name="WaterRecordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlantId" Type="Int32" Nullable="false" />
+          <Property Name="WaterTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Month" Type="Int32" Nullable="false" />
+          <Property Name="WaterTariff" Type="Double" Nullable="false" />
+          <Property Name="WaterAvg" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ElectricRecord">
+          <Key>
+            <PropertyRef Name="ElectricRecordId" />
+          </Key>
+          <Property Name="ElectricRecordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlantId" Type="Int32" Nullable="false" />
+          <Property Name="ElectricityTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Month" Type="Int32" Nullable="false" />
+          <Property Name="ElecTariff" Type="Double" Nullable="false" />
+          <Property Name="PeakValue" Type="Double" Nullable="false" />
+          <Property Name="OffPeakValue" Type="Double" Nullable="false" />
+          <Property Name="PeakValueFac" Type="Double" Nullable="false" />
+          <Property Name="OffPeakValueFac" Type="Double" Nullable="false" />
+          <Property Name="PeakAvg" Type="Double" Nullable="false" />
+          <Property Name="OffPeakAvg" Type="Double" Nullable="false" />
+          <Property Name="PeakOffPeakAvg" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PQ">
+          <Key>
+            <PropertyRef Name="PQId" />
+          </Key>
+          <Property Name="PQId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlantId" Type="Int32" Nullable="false" />
+          <Property Name="Variable" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="Double" Nullable="false" />
+          <Property Name="EffectiveFrom" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EffectiveTo" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="InsertUserId" Type="Int32" Nullable="false" />
+          <Property Name="UpdatedUserId" Type="Int32" />
+          <Property Name="InsertedTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PQStatusHistory">
+          <Key>
+            <PropertyRef Name="PQStatusHistoryId" />
+          </Key>
+          <Property Name="PQStatusHistoryId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PQId" Type="Int32" Nullable="false" />
+          <Property Name="InsertedUserId" Type="Int32" Nullable="false" />
+          <Property Name="InsertedTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="PQSubsidiaryVariable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PQId" Type="Int32" Nullable="false" />
+          <Property Name="Variable" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Value" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PSummary">
+          <Key>
+            <PropertyRef Name="PSummaryId" />
+          </Key>
+          <Property Name="PSummaryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NPCYearly" Type="Double" Nullable="false" />
+          <Property Name="DCC" Type="Double" Nullable="false" />
+          <Property Name="DDL" Type="Double" Nullable="false" />
+          <Property Name="DIL" Type="Double" Nullable="false" />
+          <Property Name="Efficiency" Type="Double" Nullable="false" />
+          <Property Name="TUR" Type="Double" Nullable="false" />
+          <Property Name="DF" Type="Double" Nullable="false" />
+          <Property Name="ECCCMonthly" Type="Double" Nullable="false" />
+          <Property Name="ECCCCost" Type="Double" Nullable="false" />
+          <Property Name="NPC" Type="Double" Nullable="false" />
+          <Property Name="RC" Type="Double" Nullable="false" />
+          <Property Name="TPC" Type="Double" Nullable="false" />
+          <Property Name="Other" Type="Double" Nullable="false" />
+          <Property Name="TC" Type="Double" Nullable="false" />
+          <Property Name="TUC" Type="Double" Nullable="false" />
+          <Property Name="ATC" Type="Double" Nullable="false" />
+          <Property Name="APV" Type="Double" />
+          <Property Name="PV" Type="Double" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Month" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="InsertedTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PlantId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MailNotifiConfig">
+          <Key>
+            <PropertyRef Name="MailConfigId" />
+          </Key>
+          <Property Name="MailConfigId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContextTextId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Subject" Type="String" Nullable="false" MaxLength="800" FixedLength="false" Unicode="false" />
+          <Property Name="Header" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="MailContentTemplate" Type="String" Nullable="false" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="Footer" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CCRecipientAddressList" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MailNotifiMonthlyBillSummary">
+          <Key>
+            <PropertyRef Name="MailBillSummaryId" />
+          </Key>
+          <Property Name="MailBillSummaryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MonthlyBillSummaryId" Type="Int32" Nullable="false" />
+          <Property Name="BillingUnitId" Type="Int32" Nullable="false" />
+          <Property Name="BillingDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MonthlyBillSummaryStatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MailID" Type="Int32" Nullable="false" />
+          <Property Name="MailBillSummaryStatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ReDeclarationDemand">
+          <Key>
+            <PropertyRef Name="ReDeclarationDemandId" />
+          </Key>
+          <Property Name="ReDeclarationDemandId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BillingUnitId" Type="Int32" Nullable="false" />
+          <Property Name="DDL" Type="Int32" Nullable="false" />
+          <Property Name="DIL" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="YearHalf" Type="Int32" Nullable="false" />
+          <Property Name="EffectiveFrom" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EffectiveTo" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="InsertedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="InsertedUserId" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedUserId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="BillingUnitFormula">
+          <Key>
+            <PropertyRef Name="BillingUnitFormulaId" />
+          </Key>
+          <Property Name="BillingUnitFormulaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BillingUnitId" Type="Int32" Nullable="false" />
+          <Property Name="EffectiveFrom" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FormulaTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Category" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="InsertedUserId" Type="Int32" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedUserId" Type="Int32" />
+          <Property Name="ModifiedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="EffectiveTo" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PSummaryStatu">
+          <Key>
+            <PropertyRef Name="PSummaryStatusId" />
+          </Key>
+          <Property Name="PSummaryStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PSummaryId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="InsertedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="QSummaryStatu">
+          <Key>
+            <PropertyRef Name="QSummaryStatusId" />
+          </Key>
+          <Property Name="QSummaryStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QSummaryId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="InsertedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="QSummary">
+          <Key>
+            <PropertyRef Name="QSummaryId" />
+          </Key>
+          <Property Name="QSummaryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WA" Type="Double" Nullable="false" />
+          <Property Name="Efficiency" Type="Double" Nullable="false" />
+          <Property Name="ET" Type="Double" Nullable="false" />
+          <Property Name="WT" Type="Double" Nullable="false" />
+          <Property Name="ECost" Type="Double" Nullable="false" />
+          <Property Name="WCost" Type="Double" Nullable="false" />
+          <Property Name="TCost" Type="Double" Nullable="false" />
+          <Property Name="ATC" Type="Double" />
+          <Property Name="AQV" Type="Double" />
+          <Property Name="QV" Type="Double" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Month" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="InsertedTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PlantId" Type="Int32" Nullable="false" />
+          <Property Name="AWL" Type="Double" Nullable="false" />
+          <Property Name="AWC" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MonthlyBillSummary">
+          <Key>
+            <PropertyRef Name="MonthlyBillSummaryId" />
+          </Key>
+          <Property Name="MonthlyBillSummaryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BillingUnitId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="StartValue" Type="Double" Nullable="false" />
+          <Property Name="EndValue" Type="Double" Nullable="false" />
+          <Property Name="DCQuantity" Type="Double" Nullable="false" />
+          <Property Name="ECQuantity" Type="Double" Nullable="false" />
+          <Property Name="ActualECValue" Type="Double" Nullable="false" />
+          <Property Name="MinOfftakeShortFall" Type="Double" />
+          <Property Name="MinOfftakeCharge" Type="Double" />
+          <Property Name="DCRate" Type="Double" Nullable="false" />
+          <Property Name="ECRate" Type="Double" Nullable="false" />
+          <Property Name="ADLMaxPeekValue" Type="Double" />
+          <Property Name="MaxPeak1" Type="Double" />
+          <Property Name="MaxPeak2" Type="Double" />
+          <Property Name="MaxPeakStart1" Type="DateTime" Precision="3" />
+          <Property Name="MaxPeakStart2" Type="DateTime" Precision="3" />
+          <Property Name="ADLQuantity" Type="Double" />
+          <Property Name="ADLRate" Type="Double" />
+          <Property Name="ADLUnitPrice" Type="Double" />
+          <Property Name="InsertedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="InsertUserId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentNo" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="GSTRate" Type="Double" Nullable="false" />
+          <Property Name="SpikeValue1" Type="Double" Nullable="false" />
+          <Property Name="SpikeTime1" Type="DateTime" Precision="3" />
+          <Property Name="SpikeValue2" Type="Double" Nullable="false" />
+          <Property Name="SpikeTime2" Type="DateTime" Precision="3" />
+          <Property Name="PerDayConsuption" Type="Double" />
+          <Property Name="catergory" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="BillToDate" Type="DateTime" Precision="3" />
+          <Property Name="DCRateEstimate" Type="Double" />
+          <Property Name="ECRateEstimate" Type="Double" />
+          <Property Name="ECStartValueEstimate" Type="Double" />
+          <Property Name="ECEndValueEstimate" Type="Double" />
+          <Property Name="ECSum" Type="Double" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ForeignName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="AddressLine_1" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="AddressLine_2" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="AddressLine_3" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="AddressLine_4" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Telephone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Fax" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="GSTRegNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Attention" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CurrencyId" Type="Int32" Nullable="false" />
+          <Property Name="CustomerTypeId" Type="Int32" Nullable="false" />
+          <Property Name="InsertedUserId" Type="Int32" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedUserId" Type="Int32" />
+          <Property Name="ModifiedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="CustomerGroupId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Formula">
+          <Key>
+            <PropertyRef Name="FormulaId" />
+          </Key>
+          <Property Name="FormulaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FormulaText" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="InsertedUserId" Type="Int32" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Category" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="BillingUnitConfig">
+          <Key>
+            <PropertyRef Name="BillingUnitConfigId" />
+          </Key>
+          <Property Name="BillingUnitConfigId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BillngUnitId" Type="Int32" Nullable="false" />
+          <Property Name="ConfigName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ConfigTextId" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ConfigValue" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="InsertedUserId" Type="Int32" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedUserId" Type="Int32" />
+          <Property Name="ModifiedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="EffectiveFrom" Type="DateTime" Precision="3" />
+          <Property Name="EffectiveTo" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MinOffTakeRecordStatu">
+          <Key>
+            <PropertyRef Name="MinOffTakeRecordStatusId" />
+          </Key>
+          <Property Name="MinOffTakeRecordStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MinOffTakeRecordId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="InsertedUserId" Type="Int32" Nullable="false" />
+          <Property Name="InsertedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedUserId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ElectricWaterTariff">
+          <Key>
+            <PropertyRef Name="ElectricWaterTariffId" />
+          </Key>
+          <Property Name="ElectricWaterTariffId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Month" Type="Int32" Nullable="false" />
+          <Property Name="Electric" Type="Double" Nullable="false" />
+          <Property Name="ElectricPeak" Type="Double" />
+          <Property Name="ElectricOffPeak" Type="Double" />
+          <Property Name="Water" Type="Double" Nullable="false" />
+          <Property Name="ECCCn" Type="Double" Nullable="false" />
+          <Property Name="InsertedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="InsertedUserId" Type="Int32" Nullable="false" />
+          <Property Name="ElectricOP" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuarterCount">
+          <Key>
+            <PropertyRef Name="QuarterCountId" />
+          </Key>
+          <Property Name="QuarterCountId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BillingUnitId" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Quarter" Type="Int32" Nullable="false" />
+          <Property Name="NValue" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MailNotificationHistory">
+          <Key>
+            <PropertyRef Name="MailID" />
+          </Key>
+          <Property Name="MailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InsertedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Subject" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ContextTextId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MailBody" Type="String" Nullable="false" MaxLength="5500" FixedLength="false" Unicode="false" />
+          <Property Name="SenderMailAddress" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RecieverMailAddress" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="InsertedUserId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CCRecipientAddress" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BILLINGDBModelStoreContainer" CdmEntityContainer="BILLINGDB">
+          <EntitySetMapping Name="AppDbConfigs">
+            <EntityTypeMapping TypeName="BILLINGDBModel.AppDbConfig">
+              <MappingFragment StoreEntitySet="AppDbConfig">
+                <ScalarProperty Name="AppDbConfigId" ColumnName="AppDbConfigId" />
+                <ScalarProperty Name="AppTextID" ColumnName="AppTextID" />
+                <ScalarProperty Name="DataSource" ColumnName="DataSource" />
+                <ScalarProperty Name="DataBaseName" ColumnName="DataBaseName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ADLTariffs">
+            <EntityTypeMapping TypeName="BILLINGDBModel.ADLTariff">
+              <MappingFragment StoreEntitySet="ADLTariff">
+                <ScalarProperty Name="InsertedDateTime" ColumnName="InsertedDateTime" />
+                <ScalarProperty Name="InsertedUserId" ColumnName="InsertedUserId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="ADLTo" ColumnName="ADLTo" />
+                <ScalarProperty Name="ADLFrom" ColumnName="ADLFrom" />
+                <ScalarProperty Name="TariffRecordId" ColumnName="TariffRecordId" />
+                <ScalarProperty Name="ADLTariffId" ColumnName="ADLTariffId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CPIs">
+            <EntityTypeMapping TypeName="BILLINGDBModel.CPI">
+              <MappingFragment StoreEntitySet="CPI">
+                <ScalarProperty Name="InsertedDateTime" ColumnName="InsertedDateTime" />
+                <ScalarProperty Name="InsertedUserId" ColumnName="InsertedUserId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="CPI1" ColumnName="CPI" />
+                <ScalarProperty Name="CpiId" ColumnName="CpiId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Currencies">
+            <EntityTypeMapping TypeName="BILLINGDBModel.Currency">
+              <MappingFragment StoreEntitySet="Currency">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Currency1" ColumnName="Currency" />
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerGroups">
+            <EntityTypeMapping TypeName="BILLINGDBModel.CustomerGroup">
+              <MappingFragment StoreEntitySet="CustomerGroup">
+                <ScalarProperty Name="InsertedDateTime" ColumnName="InsertedDateTime" />
+                <ScalarProperty Name="InsertedUserId" ColumnName="InsertedUserId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="GroupTextId" ColumnName="GroupTextId" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="CustomerGroupId" ColumnName="CustomerGroupId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MinOffTakeBases">
+            <EntityTypeMapping TypeName="BILLINGDBModel.MinOffTakeBase">
+              <MappingFragment StoreEntitySet="MinOffTakeBase">
+                <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+                <ScalarProperty Name="ModifiedUserId" ColumnName="ModifiedUserId" />
+                <ScalarProperty Name="InsertedDateTime" ColumnName="InsertedDateTime" />
+                <ScalarProperty Name="InsertedUserId" ColumnName="InsertedUserId" />
+                <ScalarProperty Name="BaseDescription" ColumnName="BaseDescription" />
+                <ScalarProperty Name="MinOffTakeBaseId" ColumnName="MinOffTakeBaseId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubsidiaryVariableValues">
+            <EntityTypeMapping TypeName="BILLINGDBModel.SubsidiaryVariableValue">
+              <MappingFragment StoreEntitySet="SubsidiaryVariableValue">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Variable" ColumnName="Variable" />
+                <ScalarProperty Name="BillingUnitFormulaId" ColumnName="BillingUnitFormulaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VariableConditions">
+            <EntityTypeMapping TypeName="BILLINGDBModel.VariableCondition">
+              <MappingFragment StoreEntitySet="VariableConditions">
+                <ScalarProperty Name="InsertedDateTime" ColumnName="InsertedDateTime" />
+                <ScalarProperty Name="InsertedUserId" ColumnName="InsertedUserId" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="ConditionTextId" ColumnName="ConditionTextId" />
+                <ScalarProperty Name="Variable" ColumnName="Variable" />
+                <ScalarProperty Name="VariableConditionId" ColumnName="VariableConditionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plants">
+            <EntityTypeMapping TypeName="BILLINGDBModel.Plant">
+              <MappingFragment StoreEntitySet="Plant">
+                <ScalarProperty Name="ProfitCenter" ColumnName="ProfitCenter" />
+                <ScalarProperty Name="AppTextId" ColumnName="AppTextId" />
+                <ScalarProperty Name="InsertedUserId" ColumnName="InsertedUserId" />
+                <ScalarProperty Name="InsertedDateTime" ColumnName="InsertedDateTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PlantId" ColumnName="PlantId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Owners">
+            <EntityTypeMapping TypeName="BILLINGDBModel.Owner">
+              <MappingFragment StoreEntitySet="Owner">
+                <ScalarProperty Name="InsertedDateTime" ColumnName="InsertedDateTime" />
+                <ScalarProperty Name="InsertedUserId" ColumnName="InsertedUserId" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="CoRegNo" ColumnName="CoRegNo" />
+                <ScalarProperty Name="WebSite" ColumnName="WebSite" />
+                <ScalarProperty Name="AddressLine_4" ColumnName="AddressLine_4" />
+                <ScalarProperty Name="AddressLine_3" ColumnName="AddressLine_3" />
+                <ScalarProperty Name="AddressLine_2" ColumnName="AddressLine_2" />
+                <ScalarProperty Name="AddressLine_1" ColumnName="AddressLine_1" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Buildings">
+            <EntityTypeMapping TypeName="BILLINGDBModel.Building">
+              <MappingFragment StoreEntitySet="Building">
+                <ScalarProperty Name="AddressLine_4" ColumnName="AddressLine_4" />
+                <ScalarProperty Name="AddressLine_3" ColumnName="AddressLine_3" />
+                <ScalarProperty Name="AddressLine_2" ColumnName="AddressLine_2" />
+                <ScalarProperty Name="AddressLine_1" ColumnName="AddressLine_1" />
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="InsertedDateTime" ColumnName="InsertedDateTime" />
+                <ScalarProperty Name="InsertedUserId" ColumnName="InsertedUserId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PlantId" ColumnName="PlantId" />
+                <ScalarProperty Name="BlockId" ColumnName="BlockId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ElectricityTypes">
+            <EntityTypeMapping TypeName="BILLINGDBModel.ElectricityType">
+              <MappingFragment StoreEntitySet="ElectricityType">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ElectricityTypeId" ColumnName="ElectricityTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WaterTypes">
+            <EntityTypeMapping TypeName="BILLINGDBModel.WaterType">
+              <MappingFragment StoreEntitySet="WaterType">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="WaterTypeId" ColumnName="WaterTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BillingUnits">
+            <EntityTypeMapping TypeName="BILLINGDBModel.BillingUnit">
+              <MappingFragment StoreEntitySet="BillingUnit">
+                <ScalarProperty Name="InsertedDateTime" ColumnName="InsertedDateTime" />
+                <ScalarProperty Name="InsertedUserId" ColumnName="InsertedUserId" />
+                <ScalarProperty Name="BillingUnitStatus" ColumnName="BillingUnitStatus" />
+                <ScalarProperty Name="C_BlockId" ColumnName="C_BlockId" />
+                <ScalarProperty Name="C_CstId" ColumnName="C_CstId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="BuildingId" ColumnName="BuildingId" />
+                <ScalarProperty Name="BillingUnitId" ColumnName="BillingUnitId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ADLRecords">
+            <EntityTypeMapping TypeName="BILLINGDBModel.ADLRecord">
+              <MappingFragment StoreEntitySet="ADLRecord">
+                <ScalarProperty Name="InsertUserId" ColumnName="InsertUserId" />
+                <ScalarProperty Name="InsertedDateTime" ColumnName="InsertedDateTime" />
+                <ScalarProperty Name="Spike2" ColumnName="Spike2" />
+                <ScalarProperty Name="SpikeTime2" ColumnName="SpikeTime2" />
+                <ScalarProperty Name="Spike1" ColumnName="Spike1" />
+                <ScalarProperty Name="SpikeTime1" ColumnName="SpikeTime1" />
+                <ScalarProperty Name="ADLEndValue1" ColumnName="ADLEndValue1" />
+                <ScalarProperty Name="ADLPeakValue1" ColumnName="ADLPeakValue1" />
+                <ScalarProperty Name="ADLStartValue1" ColumnName="ADLStartValue1" />
+                <ScalarProperty Name="ADLDuration1" ColumnName="ADLDuration1" />
+                <ScalarProperty Name="ADLEnd1" ColumnName="ADLEnd1" />
+                <ScalarProperty Name="ADLStart1" ColumnName="ADLStart1" />
+                <ScalarProperty Name="EndValue" ColumnName="EndValue" />
+                <ScalarProperty Name="StartValue" ColumnName="StartValue" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="MonthlyBillSummaryId" ColumnName="MonthlyBillSummaryId" />
+                <ScalarProperty Name="ADLRecordId" ColumnName="ADLRecordId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MinOffTakes">
+            <EntityTypeMapping TypeName="BILLINGDBModel.MinOffTake">
+              <MappingFragment StoreEntitySet="MinOffTake">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+                <ScalarProperty Name="ModifiedUserId" ColumnName="ModifiedUserId" />
+                <ScalarProperty Name="InsertedUserId" ColumnName="InsertedUserId" />
+                <ScalarProperty Name="InsertedDate" ColumnName="InsertedDate" />
+                <ScalarProperty Name="MinOffTakeValue" ColumnName="MinOffTakeValue" />
+                <ScalarProperty Name="DUHPercentage" ColumnName="DUHPercentage" />
+                <ScalarProperty Name="DUH" ColumnName="DUH" />
+                <ScalarProperty Name="DILPercentage" ColumnName="DILPercentage" />
+                <ScalarProperty Name="DIL" ColumnName="DIL" />
+                <ScalarProperty Name="DDLPercentage" ColumnName="DDLPercentage" />
+                <ScalarProperty Name="DDL" ColumnName="DDL" />
+                <ScalarProperty Name="EffectiveTo" ColumnName="EffectiveTo" />
+                <ScalarProperty Name="EffectiveFrom" ColumnName="EffectiveFrom" />
+                <ScalarProperty Name="MinOffTakeBaseId" ColumnName="MinOffTakeBaseId" />
+                <ScalarProperty Name="BillingUnitId" ColumnName="BillingUnitId" />
+                <ScalarProperty Name="MinOffTakeId" ColumnName="MinOffTakeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MonthlyBillSummaryStatus1">
+            <EntityTypeMapping TypeName="BILLINGDBModel.MonthlyBillSummaryStatus">
+              <MappingFragment StoreEntitySet="MonthlyBillSummaryStatus">
+                <ScalarProperty Name="InsertedDate" ColumnName="InsertedDate" />
+                <ScalarProperty Name="InsertedUserId" ColumnName="InsertedUserId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="MonthlyBillSummaryId" ColumnName="MonthlyBillSummaryId" />
+                <ScalarProperty Name="MonthlyBillSummaryStatusId" ColumnName="MonthlyBillSummaryStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CSVFieldConfigs">
+            <EntityTypeMapping TypeName="BILLINGDBModel.CSVFieldConfig">
+              <MappingFragment StoreEntitySet="CSVFieldConfig">
+                <ScalarProperty Name="OmitValue" ColumnName="OmitValue" />
+                <ScalarProperty Name="DefaultValue" ColumnName="DefaultValue" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="MaxLength" ColumnName="MaxLength" />
+                <ScalarProperty Name="FieldDescription" ColumnName="FieldDescription" />
+                <ScalarProperty Name="FieldTextId" ColumnName="FieldTextId" />
+                <ScalarProperty Name="CSVFieldConfigId" ColumnName="CSVFieldConfigId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SAPConfigs">
+            <EntityTypeMapping TypeName="BILLINGDBModel.SAPConfig">
+              <MappingFragment StoreEntitySet="SAPConfig">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TextId" ColumnName="TextId" />
+                <ScalarProperty Name="SAPConfigId" ColumnName="SAPConfigId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GeneralRates">
+            <EntityTypeMapping TypeName="BILLINGDBModel.GeneralRate">
+              <MappingFragment StoreEntitySet="GeneralRate">
+                <ScalarProperty Name="EffectiveTo" ColumnName="EffectiveTo" />
+                <ScalarProperty Name="EffectiveFrom" ColumnName="EffectiveFrom" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="TextId" ColumnName="TextId" />
+                <ScalarProperty Name="GeneralRateId" ColumnName="GeneralRateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerTypes">
+            <EntityTypeMapping TypeName="BILLINGDBModel.CustomerType">
+              <MappingFragment StoreEntitySet="CustomerType">
+                <ScalarProperty Name="InsertedDateTime" ColumnName="InsertedDateTime" />
+                <ScalarProperty Name="InsertedUserId" ColumnName="InsertedUserId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="CustomerTypeId" ColumnName="CustomerTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FormulaTypes">
+            <EntityTypeMapping TypeName="BILLINGDBModel.FormulaType">
+              <MappingFragment StoreEntitySet="FormulaType">
+                <ScalarProperty Name="InsertedDateTime" ColumnName="InsertedDateTime" />
+                <ScalarProperty Name="InsertedUserId" ColumnName="InsertedUserId" />
+                <ScalarProperty Name="CustomerTypeId" ColumnName="CustomerTypeId" />
+                <ScalarProperty Name="FormulaId" ColumnName="FormulaId" />
+                <ScalarProperty Name="FormulaTypeId" ColumnName="FormulaTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InvoiceConfigs">
+            <EntityTypeMapping TypeName="BILLINGDBModel.InvoiceConfig">
+              <MappingFragment StoreEntitySet="InvoiceConfig">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TextId" ColumnName="TextId" />
+                <ScalarProperty Name="InvoiceConfigId" ColumnName="InvoiceConfigId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FixedDemandCharges">
+            <EntityTypeMapping TypeName="BILLINGDBModel.FixedDemandCharge">
+              <MappingFragment StoreEntitySet="FixedDemandCharge">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="FDID" ColumnName="FDID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TariffRecords">
+            <EntityTypeMapping TypeName="BILLINGDBModel.TariffRecord">
+              <MappingFragment StoreEntitySet="TariffRecord">
+                <ScalarProperty Name="InsertDateTime" ColumnName="InsertDateTime" />
+                <ScalarProperty Name="InsertUserId" ColumnName="InsertUserId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="QuaterNo" ColumnName="QuaterNo" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="ECRate" ColumnName="ECRate" />
+                <ScalarProperty Name="DCMonthlyRate" ColumnName="DCMonthlyRate" />
+                <ScalarProperty Name="DCAnnumRate" ColumnName="DCAnnumRate" />
+                <ScalarProperty Name="ECEffectiveTo" ColumnName="ECEffectiveTo" />
+                <ScalarProperty Name="DCEffectiveTo" ColumnName="DCEffectiveTo" />
+                <ScalarProperty Name="ECEffectiveFrom" ColumnName="ECEffectiveFrom" />
+                <ScalarProperty Name="DCEffectiveFrom" ColumnName="DCEffectiveFrom" />
+                <ScalarProperty Name="DDL" ColumnName="DDL" />
+                <ScalarProperty Name="BillingUnitId" ColumnName="BillingUnitId" />
+                <ScalarProperty Name="TariffRecordId" ColumnName="TariffRecordId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VariableValues">
+            <EntityTypeMapping TypeName="BILLINGDBModel.VariableValue">
+              <MappingFragment StoreEntitySet="VariableValue">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Variable" ColumnName="Variable" />
+                <ScalarProperty Name="TariffRecordId" ColumnName="TariffRecordId" />
+                <ScalarProperty Name="VariableValueId" ColumnName="VariableValueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChangeLogs">
+            <EntityTypeMapping TypeName="BILLINGDBModel.ChangeLog">
+              <MappingFragment StoreEntitySet="ChangeLog">
+                <ScalarProperty Name="ChangedBy" ColumnName="ChangedBy" />
+                <ScalarProperty Name="DateChanged" ColumnName="DateChanged" />
+                <ScalarProperty Name="NewValue" ColumnName="NewValue" />
+                <ScalarProperty Name="OldValue" ColumnName="OldValue" />
+                <ScalarProperty Name="PrimaryKey" ColumnName="PrimaryKey" />
+                <ScalarProperty Name="PropertyName" ColumnName="PropertyName" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Variables">
+            <EntityTypeMapping TypeName="BILLINGDBModel.Variable">
+              <MappingFragment StoreEntitySet="Variable">
+                <ScalarProperty Name="TextInfo" ColumnName="TextInfo" />
+                <ScalarProperty Name="TextId" ColumnName="TextId" />
+                <ScalarProperty Name="InsertedDateTime" ColumnName="InsertedDateTime" />
+                <ScalarProperty Name="InsertedUserId" ColumnName="InsertedUserId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Mode" ColumnName="Mode" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="VariableId" ColumnName="VariableId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GeneralConfigs">
+            <EntityTypeMapping TypeName="BILLINGDBModel.GeneralConfig">
+              <MappingFragment StoreEntitySet="GeneralConfig">
+                <ScalarProperty Name="InsertedUserId" ColumnName="InsertedUserId" />
+                <ScalarProperty Name="InsertedTime" ColumnName="InsertedTime" />
+                <ScalarProperty Name="EffectiveTo" ColumnName="EffectiveTo" />
+                <ScalarProperty Name="EffectiveFrom" ColumnName="EffectiveFrom" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="TextId" ColumnName="TextId" />
+                <ScalarProperty Name="GeneralConfigId" ColumnName="GeneralConfigId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TariffRecordStatus">
+            <EntityTypeMapping TypeName="BILLINGDBModel.TariffRecordStatu">
+              <MappingFragment StoreEntitySet="TariffRecordStatus">
+                <ScalarProperty Name="ModifiedUserId" ColumnName="ModifiedUserId" />
+                <ScalarProperty Name="InsertedDate" ColumnName="InsertedDate" />
+                <ScalarProperty Name="InsertedUserId" ColumnName="InsertedUserId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TariffRecordId" ColumnName="TariffRecordId" />
+                <ScalarProperty Name="TariffRecordStatusId" ColumnName="TariffRecordStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlantVariables">
+            <EntityTypeMapping TypeName="BILLINGDBModel.PlantVariable">
+              <MappingFragment StoreEntitySet="PlantVariable">
+                <ScalarProperty Name="InsertedDateTime" ColumnName="InsertedDateTime" />
+                <ScalarProperty Name="InsertedUserId" ColumnName="InsertedUserId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="EffectiveTo" ColumnName="EffectiveTo" />
+                <ScalarProperty Name="EffectiveFrom" ColumnName="EffectiveFrom" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="TextId" ColumnName="TextId" />
+                <ScalarProperty Name="Variable" ColumnName="Variable" />
+                <ScalarProperty Name="PlantId" ColumnName="PlantId" />
+                <ScalarProperty Name="PlantVariableId" ColumnName="PlantVariableId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WaterRecords">
+            <EntityTypeMapping TypeName="BILLINGDBModel.WaterRecord">
+              <MappingFragment StoreEntitySet="WaterRecord">
+                <ScalarProperty Name="WaterAvg" ColumnName="WaterAvg" />
+                <ScalarProperty Name="WaterTariff" ColumnName="WaterTariff" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="WaterTypeId" ColumnName="WaterTypeId" />
+                <ScalarProperty Name="PlantId" ColumnName="PlantId" />
+                <ScalarProperty Name="WaterRecordId" ColumnName="WaterRecordId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ElectricRecords">
+            <EntityTypeMapping TypeName="BILLINGDBModel.ElectricRecord">
+              <MappingFragment StoreEntitySet="ElectricRecord">
+                <ScalarProperty Name="PeakOffPeakAvg" ColumnName="PeakOffPeakAvg" />
+                <ScalarProperty Name="OffPeakAvg" ColumnName="OffPeakAvg" />
+                <ScalarProperty Name="PeakAvg" ColumnName="PeakAvg" />
+                <ScalarProperty Name="OffPeakValueFac" ColumnName="OffPeakValueFac" />
+                <ScalarProperty Name="PeakValueFac" ColumnName="PeakValueFac" />
+                <ScalarProperty Name="OffPeakValue" ColumnName="OffPeakValue" />
+                <ScalarProperty Name="PeakValue" ColumnName="PeakValue" />
+                <ScalarProperty Name="ElecTariff" ColumnName="ElecTariff" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="ElectricityTypeId" ColumnName="ElectricityTypeId" />
+                <ScalarProperty Name="PlantId" ColumnName="PlantId" />
+                <ScalarProperty Name="ElectricRecordId" ColumnName="ElectricRecordId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PQs">
+            <EntityTypeMapping TypeName="BILLINGDBModel.PQ">
+              <MappingFragment StoreEntitySet="PQ">
+                <ScalarProperty Name="UpdatedTime" ColumnName="UpdatedTime" />
+                <ScalarProperty Name="InsertedTime" ColumnName="InsertedTime" />
+                <ScalarProperty Name="UpdatedUserId" ColumnName="UpdatedUserId" />
+                <ScalarProperty Name="InsertUserId" ColumnName="InsertUserId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="EffectiveTo" ColumnName="EffectiveTo" />
+                <ScalarProperty Name="EffectiveFrom" ColumnName="EffectiveFrom" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Variable" ColumnName="Variable" />
+                <ScalarProperty Name="PlantId" ColumnName="PlantId" />
+                <ScalarProperty Name="PQId" ColumnName="PQId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PQStatusHistories">
+            <EntityTypeMapping TypeName="BILLINGDBModel.PQStatusHistory">
+              <MappingFragment StoreEntitySet="PQStatusHistory">
+                <ScalarProperty Name="InsertedTime" ColumnName="InsertedTime" />
+                <ScalarProperty Name="InsertedUserId" ColumnName="InsertedUserId" />
+                <ScalarProperty Name="PQId" ColumnName="PQId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="PQStatusHistoryId" ColumnName="PQStatusHistoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PQSubsidiaryVariables">
+            <EntityTypeMapping TypeName="BILLINGDBModel.PQSubsidiaryVariable">
+              <MappingFragment StoreEntitySet="PQSubsidiaryVariable">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Variable" ColumnName="Variable" />
+                <ScalarProperty Name="PQId" ColumnName="PQId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PSummaries">
+            <EntityTypeMapping TypeName="BILLINGDBModel.PSummary">
+              <MappingFragment StoreEntitySet="PSummary">
+                <ScalarProperty Name="PlantId" ColumnName="PlantId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="InsertedTime" ColumnName="InsertedTime" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="PV" ColumnName="PV" />
+                <ScalarProperty Name="APV" ColumnName="APV" />
+                <ScalarProperty Name="ATC" ColumnName="ATC" />
+                <ScalarProperty Name="TUC" ColumnName="TUC" />
+                <ScalarProperty Name="TC" ColumnName="TC" />
+                <ScalarProperty Name="Other" ColumnName="Other" />
+                <ScalarProperty Name="TPC" ColumnName="TPC" />
+                <ScalarProperty Name="RC" ColumnName="RC" />
+                <ScalarProperty Name="NPC" ColumnName="NPC" />
+                <ScalarProperty Name="ECCCCost" ColumnName="ECCCCost" />
+                <ScalarProperty Name="ECCCMonthly" ColumnName="ECCCMonthly" />
+                <ScalarProperty Name="DF" ColumnName="DF" />
+                <ScalarProperty Name="TUR" ColumnName="TUR" />
+                <ScalarProperty Name="Efficiency" ColumnName="Efficiency" />
+                <ScalarProperty Name="DIL" ColumnName="DIL" />
+                <ScalarProperty Name="DDL" ColumnName="DDL" />
+                <ScalarProperty Name="DCC" ColumnName="DCC" />
+                <ScalarProperty Name="NPCYearly" ColumnName="NPCYearly" />
+                <ScalarProperty Name="PSummaryId" ColumnName="PSummaryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MailNotifiConfigs">
+            <EntityTypeMapping TypeName="BILLINGDBModel.MailNotifiConfig">
+              <MappingFragment StoreEntitySet="MailNotifiConfig">
+                <ScalarProperty Name="CCRecipientAddressList" ColumnName="CCRecipientAddressList" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Footer" ColumnName="Footer" />
+                <ScalarProperty Name="MailContentTemplate" ColumnName="MailContentTemplate" />
+                <ScalarProperty Name="Header" ColumnName="Header" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="ContextTextId" ColumnName="ContextTextId" />
+                <ScalarProperty Name="MailConfigId" ColumnName="MailConfigId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MailNotifiMonthlyBillSummaries">
+            <EntityTypeMapping TypeName="BILLINGDBModel.MailNotifiMonthlyBillSummary">
+              <MappingFragment StoreEntitySet="MailNotifiMonthlyBillSummary">
+                <ScalarProperty Name="MailBillSummaryStatus" ColumnName="MailBillSummaryStatus" />
+                <ScalarProperty Name="MailID" ColumnName="MailID" />
+                <ScalarProperty Name="MonthlyBillSummaryStatus" ColumnName="MonthlyBillSummaryStatus" />
+                <ScalarProperty Name="BillingDate" ColumnName="BillingDate" />
+                <ScalarProperty Name="BillingUnitId" ColumnName="BillingUnitId" />
+                <ScalarProperty Name="MonthlyBillSummaryId" ColumnName="MonthlyBillSummaryId" />
+                <ScalarProperty Name="MailBillSummaryId" ColumnName="MailBillSummaryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReDeclarationDemands">
+            <EntityTypeMapping TypeName="BILLINGDBModel.ReDeclarationDemand">
+              <MappingFragment StoreEntitySet="ReDeclarationDemand">
+                <ScalarProperty Name="ModifiedUserId" ColumnName="ModifiedUserId" />
+                <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+                <ScalarProperty Name="InsertedUserId" ColumnName="InsertedUserId" />
+                <ScalarProperty Name="InsertedDateTime" ColumnName="InsertedDateTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="EffectiveTo" ColumnName="EffectiveTo" />
+                <ScalarProperty Name="EffectiveFrom" ColumnName="EffectiveFrom" />
+                <ScalarProperty Name="YearHalf" ColumnName="YearHalf" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="DIL" ColumnName="DIL" />
+                <ScalarProperty Name="DDL" ColumnName="DDL" />
+                <ScalarProperty Name="BillingUnitId" ColumnName="BillingUnitId" />
+                <ScalarProperty Name="ReDeclarationDemandId" ColumnName="ReDeclarationDemandId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BillingUnitFormulas">
+            <EntityTypeMapping TypeName="BILLINGDBModel.BillingUnitFormula">
+              <MappingFragment StoreEntitySet="BillingUnitFormula">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="EffectiveTo" ColumnName="EffectiveTo" />
+                <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+                <ScalarProperty Name="ModifiedUserId" ColumnName="ModifiedUserId" />
+                <ScalarProperty Name="InsertedDateTime" ColumnName="InsertedDateTime" />
+                <ScalarProperty Name="InsertedUserId" ColumnName="InsertedUserId" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="FormulaTypeId" ColumnName="FormulaTypeId" />
+                <ScalarProperty Name="EffectiveFrom" ColumnName="EffectiveFrom" />
+                <ScalarProperty Name="BillingUnitId" ColumnName="BillingUnitId" />
+                <ScalarProperty Name="BillingUnitFormulaId" ColumnName="BillingUnitFormulaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PSummaryStatus">
+            <EntityTypeMapping TypeName="BILLINGDBModel.PSummaryStatu">
+              <MappingFragment StoreEntitySet="PSummaryStatus">
+                <ScalarProperty Name="InsertedDate" ColumnName="InsertedDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="PSummaryId" ColumnName="PSummaryId" />
+                <ScalarProperty Name="PSummaryStatusId" ColumnName="PSummaryStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QSummaryStatus">
+            <EntityTypeMapping TypeName="BILLINGDBModel.QSummaryStatu">
+              <MappingFragment StoreEntitySet="QSummaryStatus">
+                <ScalarProperty Name="InsertedDate" ColumnName="InsertedDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="QSummaryId" ColumnName="QSummaryId" />
+                <ScalarProperty Name="QSummaryStatusId" ColumnName="QSummaryStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QSummaries">
+            <EntityTypeMapping TypeName="BILLINGDBModel.QSummary">
+              <MappingFragment StoreEntitySet="QSummary">
+                <ScalarProperty Name="AWC" ColumnName="AWC" />
+                <ScalarProperty Name="AWL" ColumnName="AWL" />
+                <ScalarProperty Name="PlantId" ColumnName="PlantId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="InsertedTime" ColumnName="InsertedTime" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="QV" ColumnName="QV" />
+                <ScalarProperty Name="AQV" ColumnName="AQV" />
+                <ScalarProperty Name="ATC" ColumnName="ATC" />
+                <ScalarProperty Name="TCost" ColumnName="TCost" />
+                <ScalarProperty Name="WCost" ColumnName="WCost" />
+                <ScalarProperty Name="ECost" ColumnName="ECost" />
+                <ScalarProperty Name="WT" ColumnName="WT" />
+                <ScalarProperty Name="ET" ColumnName="ET" />
+                <ScalarProperty Name="Efficiency" ColumnName="Efficiency" />
+                <ScalarProperty Name="WA" ColumnName="WA" />
+                <ScalarProperty Name="QSummaryId" ColumnName="QSummaryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MonthlyBillSummaries">
+            <EntityTypeMapping TypeName="BILLINGDBModel.MonthlyBillSummary">
+              <MappingFragment StoreEntitySet="MonthlyBillSummary">
+                <ScalarProperty Name="ECSum" ColumnName="ECSum" />
+                <ScalarProperty Name="ECEndValueEstimate" ColumnName="ECEndValueEstimate" />
+                <ScalarProperty Name="ECStartValueEstimate" ColumnName="ECStartValueEstimate" />
+                <ScalarProperty Name="ECRateEstimate" ColumnName="ECRateEstimate" />
+                <ScalarProperty Name="DCRateEstimate" ColumnName="DCRateEstimate" />
+                <ScalarProperty Name="BillToDate" ColumnName="BillToDate" />
+                <ScalarProperty Name="catergory" ColumnName="catergory" />
+                <ScalarProperty Name="PerDayConsuption" ColumnName="PerDayConsuption" />
+                <ScalarProperty Name="SpikeTime2" ColumnName="SpikeTime2" />
+                <ScalarProperty Name="SpikeValue2" ColumnName="SpikeValue2" />
+                <ScalarProperty Name="SpikeTime1" ColumnName="SpikeTime1" />
+                <ScalarProperty Name="SpikeValue1" ColumnName="SpikeValue1" />
+                <ScalarProperty Name="GSTRate" ColumnName="GSTRate" />
+                <ScalarProperty Name="DocumentNo" ColumnName="DocumentNo" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="InsertUserId" ColumnName="InsertUserId" />
+                <ScalarProperty Name="InsertedDateTime" ColumnName="InsertedDateTime" />
+                <ScalarProperty Name="ADLUnitPrice" ColumnName="ADLUnitPrice" />
+                <ScalarProperty Name="ADLRate" ColumnName="ADLRate" />
+                <ScalarProperty Name="ADLQuantity" ColumnName="ADLQuantity" />
+                <ScalarProperty Name="MaxPeakStart2" ColumnName="MaxPeakStart2" />
+                <ScalarProperty Name="MaxPeakStart1" ColumnName="MaxPeakStart1" />
+                <ScalarProperty Name="MaxPeak2" ColumnName="MaxPeak2" />
+                <ScalarProperty Name="MaxPeak1" ColumnName="MaxPeak1" />
+                <ScalarProperty Name="ADLMaxPeekValue" ColumnName="ADLMaxPeekValue" />
+                <ScalarProperty Name="ECRate" ColumnName="ECRate" />
+                <ScalarProperty Name="DCRate" ColumnName="DCRate" />
+                <ScalarProperty Name="MinOfftakeCharge" ColumnName="MinOfftakeCharge" />
+                <ScalarProperty Name="MinOfftakeShortFall" ColumnName="MinOfftakeShortFall" />
+                <ScalarProperty Name="ActualECValue" ColumnName="ActualECValue" />
+                <ScalarProperty Name="ECQuantity" ColumnName="ECQuantity" />
+                <ScalarProperty Name="DCQuantity" ColumnName="DCQuantity" />
+                <ScalarProperty Name="EndValue" ColumnName="EndValue" />
+                <ScalarProperty Name="StartValue" ColumnName="StartValue" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="BillingUnitId" ColumnName="BillingUnitId" />
+                <ScalarProperty Name="MonthlyBillSummaryId" ColumnName="MonthlyBillSummaryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="BILLINGDBModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CustomerGroupId" ColumnName="CustomerGroupId" />
+                <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+                <ScalarProperty Name="ModifiedUserId" ColumnName="ModifiedUserId" />
+                <ScalarProperty Name="InsertedDateTime" ColumnName="InsertedDateTime" />
+                <ScalarProperty Name="InsertedUserId" ColumnName="InsertedUserId" />
+                <ScalarProperty Name="CustomerTypeId" ColumnName="CustomerTypeId" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+                <ScalarProperty Name="Attention" ColumnName="Attention" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="GSTRegNo" ColumnName="GSTRegNo" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="AddressLine_4" ColumnName="AddressLine_4" />
+                <ScalarProperty Name="AddressLine_3" ColumnName="AddressLine_3" />
+                <ScalarProperty Name="AddressLine_2" ColumnName="AddressLine_2" />
+                <ScalarProperty Name="AddressLine_1" ColumnName="AddressLine_1" />
+                <ScalarProperty Name="ForeignName" ColumnName="ForeignName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Formulae">
+            <EntityTypeMapping TypeName="BILLINGDBModel.Formula">
+              <MappingFragment StoreEntitySet="Formula">
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="InsertedDateTime" ColumnName="InsertedDateTime" />
+                <ScalarProperty Name="InsertedUserId" ColumnName="InsertedUserId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="FormulaText" ColumnName="FormulaText" />
+                <ScalarProperty Name="FormulaId" ColumnName="FormulaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BillingUnitConfigs">
+            <EntityTypeMapping TypeName="BILLINGDBModel.BillingUnitConfig">
+              <MappingFragment StoreEntitySet="BillingUnitConfig">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="EffectiveTo" ColumnName="EffectiveTo" />
+                <ScalarProperty Name="EffectiveFrom" ColumnName="EffectiveFrom" />
+                <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+                <ScalarProperty Name="ModifiedUserId" ColumnName="ModifiedUserId" />
+                <ScalarProperty Name="InsertedDateTime" ColumnName="InsertedDateTime" />
+                <ScalarProperty Name="InsertedUserId" ColumnName="InsertedUserId" />
+                <ScalarProperty Name="ConfigValue" ColumnName="ConfigValue" />
+                <ScalarProperty Name="ConfigTextId" ColumnName="ConfigTextId" />
+                <ScalarProperty Name="ConfigName" ColumnName="ConfigName" />
+                <ScalarProperty Name="BillngUnitId" ColumnName="BillngUnitId" />
+                <ScalarProperty Name="BillingUnitConfigId" ColumnName="BillingUnitConfigId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MinOffTakeRecordStatus">
+            <EntityTypeMapping TypeName="BILLINGDBModel.MinOffTakeRecordStatu">
+              <MappingFragment StoreEntitySet="MinOffTakeRecordStatus">
+                <ScalarProperty Name="ModifiedUserId" ColumnName="ModifiedUserId" />
+                <ScalarProperty Name="InsertedDate" ColumnName="InsertedDate" />
+                <ScalarProperty Name="InsertedUserId" ColumnName="InsertedUserId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="MinOffTakeRecordId" ColumnName="MinOffTakeRecordId" />
+                <ScalarProperty Name="MinOffTakeRecordStatusId" ColumnName="MinOffTakeRecordStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ElectricWaterTariffs">
+            <EntityTypeMapping TypeName="BILLINGDBModel.ElectricWaterTariff">
+              <MappingFragment StoreEntitySet="ElectricWaterTariff">
+                <ScalarProperty Name="ElectricOP" ColumnName="ElectricOP" />
+                <ScalarProperty Name="InsertedUserId" ColumnName="InsertedUserId" />
+                <ScalarProperty Name="InsertedDateTime" ColumnName="InsertedDateTime" />
+                <ScalarProperty Name="ECCCn" ColumnName="ECCCn" />
+                <ScalarProperty Name="Water" ColumnName="Water" />
+                <ScalarProperty Name="ElectricOffPeak" ColumnName="ElectricOffPeak" />
+                <ScalarProperty Name="ElectricPeak" ColumnName="ElectricPeak" />
+                <ScalarProperty Name="Electric" ColumnName="Electric" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="ElectricWaterTariffId" ColumnName="ElectricWaterTariffId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuarterCounts">
+            <EntityTypeMapping TypeName="BILLINGDBModel.QuarterCount">
+              <MappingFragment StoreEntitySet="QuarterCount">
+                <ScalarProperty Name="NValue" ColumnName="NValue" />
+                <ScalarProperty Name="Quarter" ColumnName="Quarter" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="BillingUnitId" ColumnName="BillingUnitId" />
+                <ScalarProperty Name="QuarterCountId" ColumnName="QuarterCountId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MailNotificationHistories">
+            <EntityTypeMapping TypeName="BILLINGDBModel.MailNotificationHistory">
+              <MappingFragment StoreEntitySet="MailNotificationHistory">
+                <ScalarProperty Name="CCRecipientAddress" ColumnName="CCRecipientAddress" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="InsertedUserId" ColumnName="InsertedUserId" />
+                <ScalarProperty Name="RecieverMailAddress" ColumnName="RecieverMailAddress" />
+                <ScalarProperty Name="SenderMailAddress" ColumnName="SenderMailAddress" />
+                <ScalarProperty Name="MailBody" ColumnName="MailBody" />
+                <ScalarProperty Name="ContextTextId" ColumnName="ContextTextId" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="InsertedDateTime" ColumnName="InsertedDateTime" />
+                <ScalarProperty Name="MailID" ColumnName="MailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

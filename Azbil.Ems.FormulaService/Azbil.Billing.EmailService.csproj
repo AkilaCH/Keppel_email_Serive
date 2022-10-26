@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>dotnet-WorkerService1-C36B8E03-995C-46D7-97AE-C26217E934F7</UserSecretsId>
+    <PublishWithAspNetCoreTargetManifest>false</PublishWithAspNetCoreTargetManifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.3.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="3.0.0" />
+    <PackageReference Include="MongoDB.Bson" Version="2.10.4" />
+    <PackageReference Include="MongoDB.Driver" Version="2.10.4" />
+    <PackageReference Include="MongoDB.Driver.Core" Version="2.10.4" />
+    <PackageReference Include="Ninject" Version="3.3.4" />
+    <PackageReference Include="NLog" Version="4.6.8" />
+    <PackageReference Include="Quartz" Version="3.0.7" />
+    <PackageReference Include="System.Security.AccessControl" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Azbil.Billing.Business\Azbil.Billing.Business.csproj" />
+    <ProjectReference Include="..\Azbil.Billing.Data\Azbil.Billing.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Azbil.Analytic.HDA">
+      <HintPath>..\Azbil.Ems.Driver\bin\Debug\Azbil.Analytic.HDA.dll</HintPath>
+    </Reference>
+    <Reference Include="Azbil.Analytic.Util">
+      <HintPath>..\Azbil.Analytic.Util\bin\Debug\Azbil.Analytic.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="Azbil.Ems.Algorithms">
+      <HintPath>..\Azbil.Ems.Algorithms\bin\Debug\Azbil.Ems.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="Azbil.Ems.Business">
+      <HintPath>..\Azbil.Ems.Business\bin\Debug\Azbil.Ems.Business.dll</HintPath>
+    </Reference>
+    <Reference Include="Azbil.Ems.Core">
+      <HintPath>..\Azbil.Ems.Core\bin\Debug\netstandard2.0\Azbil.Ems.Core.dll</HintPath>
+    </Reference>    
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Bindings\" />
+    <Folder Include="Common\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+</Project>
